@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   #get 'chat/new'
-
+  #get "/chat" => redirect("http://localhost:8080")
   get 'trip/index'
 
   get 'trip/create'
