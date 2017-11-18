@@ -7,4 +7,17 @@
 // To reference this file, add <%= javascript_pack_tag 'application' %> to the appropriate
 // layout file, like app/views/layouts/application.html.erb
 
-console.log('Hello World from Webpacker')
+// console.log('Hello World from Webpacker')
+// import hello from './hello';
+import React from 'react'
+import ReactDOM from 'react-dom'
+import Main from './src/index.js'
+
+document.addEventListener('DOMContentLoaded', () => {
+  ReactDOM.render(
+  
+    <Main />,
+    document.body.appendChild(document.createElement('div')),
+  
+  )
+})

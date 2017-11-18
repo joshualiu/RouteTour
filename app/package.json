@@ -3,12 +3,23 @@
     "@rails/webpacker": "^3.0.2",
     "babel-preset-react": "^6.24.1",
     "coffeescript": "1.12.7",
+    "create-react-class": "^15.6.2",
+    "google-maps-react": "^1.1.2",
+    "node-uuid": "^1.4.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-on-rails": "^10.0.2"
   },
   "devDependencies": {
-    "webpack-dev-server": "^2.9.4"
+    "webpack-dev-server": "^2.9.4",
+    "babel-preset-react": "^6.5.0",
+    "babelify": "^7.3.0",
+    "browserify": "^9.0.3",
+    "gulp": "^3.8.11",
+    "gulp-html-minifier": "^0.1.6",
+    "gulp-uglify": "^1.1.0",
+    "vinyl-buffer": "^1.0.0",
+    "vinyl-source-stream": "^1.0.0"
   }
 }
