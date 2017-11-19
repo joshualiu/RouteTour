@@ -1,3 +1,71 @@
 // Place all the styles related to the trip controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
+
+.ammapDescriptionWindow {
+  font-size:11px;
+  font-family:verdana,helvetica,arial,sans-serif;
+  background-color:#FFFFFF;
+  border-style:solid;
+  border-color:#DADADA;
+  border-width:1px;
+  color:#000000;
+  padding:8px;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+.userlistdiv {
+  display: flex;
+  justify-content: space-around;
+  background-color: rgb(12, 90, 163);
+}
+
+.userlistdiv>div {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+}
+
+.userlistdiv>span {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+  display: block;
+}
+
+.userlistdiv>a {
+  background-color: #f1f1f1;
+  width: 120px;
+  margin: 10px;
+  text-align: center;
+  line-height: 75px;
+  font-size: 20px;
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.circleBase {
+  border-radius: 50%;
+}
+
+.type1 {
+  width: 75px;
+  height: 75px;
+  background: #a791b4;
+  border: 3px solid  rgb(12, 90, 163);
+  margin-left: 16px;
+  margin-top: 16px;
+}

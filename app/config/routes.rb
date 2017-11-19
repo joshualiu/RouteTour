@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   get 'trip/new'
   get '/trip/chat' => 'chat#new'
+  get '/trip/chat/:tripid' => 'chat#trip'
   
   get 'user/index'
 
