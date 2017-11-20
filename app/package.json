@@ -5,6 +5,7 @@
     "coffeescript": "1.12.7",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
+    "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
     "react-on-rails": "^10.0.2"
   },
