@@ -14,50 +14,41 @@ class GoogleAPIData extends React.Component{
       var latGeo;
       var lngGeo;
       if (status === google.maps.GeocoderStatus.OK) {
-      
         latGeo = results[0].geometry.location.lat();
         lngGeo = results[0].geometry.location.lng();
-      
         var locationToCenter = {lat: latGeo, lng: lngGeo};
         var service = new google.maps.places.PlacesService(document.createElement('div'));
-        var typeForAPI = ['lodging'];
-        //'park','museum','amusement_park','art_gallery'
+        var typeForAPI = ['lodging','restaurant']; //'park','museum','amusement_park','art_gallery'
         for(let elem in typeForAPI){
-         
           service.nearbySearch({
             location: locationToCenter,
             radius: 5000,
-            type: typeForAPI[elem]
-          }, (results, status) => {
-              
-                if (status === google.maps.places.PlacesServiceStatus.OK) {
-                  
-                  for (var i = 0; i < results.length; i++) {
-                    
-                    this.state.data.push({p:results[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:results[i].name,r:results[i].rating});
-                    
-                               
-                  }
-                  
+            type: typeForAPI[elem],
+            //keyword: "POI",
+          },(result, status) => {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                for (var i = 0; i < result.length; i++) { 
+                  this.state.data.push({p:result[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:result[i].name,r:result[i].rating});      
                 }
-                debugger;
-                return;
-          })
-              
+              }  
+            //debugger;
+            return;
+           
+          })    
         }
-        console.log(this.state.data);
-        this.setState(this.state.data);
+        console.log("data",this.state.data);
+        //debugger;
+        setTimeout(()=>{this.setState(this.state.data)}, 1000);
+        //this.state.data = [];
         return;
       }
       return;
     });
-   
   }
   
   handleFormSubmit = (submitEvent) => {
     submitEvent.preventDefault();
     var address = this.searchInputElement.value;
-    debugger;
     this.geocodeAddress(address);
   }
  
@@ -106,5 +97,4 @@ class GoogleAPIData extends React.Component{
     );
   }
 }
-
 export default GoogleAPIData;
