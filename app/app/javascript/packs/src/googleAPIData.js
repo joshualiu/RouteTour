@@ -1,79 +1,72 @@
 import React from 'react';
+import RenderPlaces from './renderPlaces.js'
 
 class GoogleAPIData extends React.Component{  
-//   getInitialState = () => {
-//     return {
-//       isGeocodingError: false,
-//       foundAddress: INITIAL_LOCATION.address
-//     }
-//   }
-
+  constructor(props){
+    super(props);
+    this.state = {
+      data: [],
+    };  
+  }
+  
   geocodeAddress = (address) => {
     this.geocoder.geocode({ 'address': address }, (results, status) => {
       var latGeo;
       var lngGeo;
       if (status === google.maps.GeocoderStatus.OK) {
-
-        // this.setState({
-        //   foundAddress: results[0].formatted_address,
-        //   isGeocodingError: false
-        // });
-       
+      
         latGeo = results[0].geometry.location.lat();
         lngGeo = results[0].geometry.location.lng();
       
         var locationToCenter = {lat: latGeo, lng: lngGeo};
-        console.log("location to centers",locationToCenter);
+        
         var service = new google.maps.places.PlacesService(document.createElement('div'));
         var typeForAPI = ['park','museum','amusement_park','art_gallery','lodging'];
+        
         for(let elem in typeForAPI){
+         
           service.nearbySearch({
             location: locationToCenter,
             radius: 5000,
             type: typeForAPI[elem]
           }, (results, status) => {
+              
                 if (status === google.maps.places.PlacesServiceStatus.OK) {
+                  
                   for (var i = 0; i < results.length; i++) {
-                    console.log(results[i]);
+                    
+                    this.state.data.push({p:results[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:results[i].name});
+                    
+                               
                   }
+                  
                 }
-              }
-          )}
-
-
+                
+          })
+              
+        }
+        console.log(this.state.data);
+        this.setState(this.state.data);
         return;
       }
-
-    //   this.setState({
-    //     foundAddress: null,
-    //     isGeocodingError: true
-    //   });
-
     });
+   
   }
-
+  
   handleFormSubmit = (submitEvent) => {
     submitEvent.preventDefault();
-
     var address = this.searchInputElement.value;
-
     this.geocodeAddress(address);
   }
-
+ 
   componentDidMount () {
     var mapElement = this.mapElement;
-    this.geocoder = new google.maps.Geocoder();
-     
-    
+    this.geocoder = new google.maps.Geocoder(); 
   }
 
   setSearchInputElementReference = (inputReference) => {
     this.searchInputElement = inputReference;
   }
-
-  // setMapElementReference = (mapElementReference) => {
-  //   this.mapElement = mapElementReference;
-  // }
 
   render() {
     return (
@@ -96,6 +89,10 @@ class GoogleAPIData extends React.Component{
                   <button type="submit" className="btn btn-default btn-lg">
                     <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
                   </button>
+                  
+                  <div>
+                    <RenderPlaces data={this.state.data} />
+                    </div>
 
                 </div>
               </div>
