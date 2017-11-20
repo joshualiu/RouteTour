@@ -18,6 +18,7 @@ class RenderPlaces extends React.Component{
                 <div>
                 <img src={elem.p}/>
                  <span>{elem.n}</span>
+                 <div>{elem.r}</div>
                 </div> )
                
             })

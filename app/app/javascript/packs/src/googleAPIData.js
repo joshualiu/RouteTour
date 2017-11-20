@@ -19,10 +19,9 @@ class GoogleAPIData extends React.Component{
         lngGeo = results[0].geometry.location.lng();
       
         var locationToCenter = {lat: latGeo, lng: lngGeo};
-        
         var service = new google.maps.places.PlacesService(document.createElement('div'));
-        var typeForAPI = ['park','museum','amusement_park','art_gallery','lodging'];
-        
+        var typeForAPI = ['lodging'];
+        //'park','museum','amusement_park','art_gallery'
         for(let elem in typeForAPI){
          
           service.nearbySearch({
@@ -35,13 +34,14 @@ class GoogleAPIData extends React.Component{
                   
                   for (var i = 0; i < results.length; i++) {
                     
-                    this.state.data.push({p:results[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:results[i].name});
+                    this.state.data.push({p:results[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:results[i].name,r:results[i].rating});
                     
                                
                   }
                   
                 }
-                
+                debugger;
+                return;
           })
               
         }
@@ -49,6 +49,7 @@ class GoogleAPIData extends React.Component{
         this.setState(this.state.data);
         return;
       }
+      return;
     });
    
   }
@@ -56,6 +57,7 @@ class GoogleAPIData extends React.Component{
   handleFormSubmit = (submitEvent) => {
     submitEvent.preventDefault();
     var address = this.searchInputElement.value;
+    debugger;
     this.geocodeAddress(address);
   }
  
