@@ -210,18 +210,115 @@ const Todata = {
   ]
 }
 
+const Flightdata = {
+    "currency": "USD",
+    "results": [
+      {
+        "itineraries": [
+          {
+            "outbound": {
+              "flights": [
+                {
+                  "departs_at": "2017-12-25T18:30",
+                  "arrives_at": "2017-12-25T20:20",
+                  "origin": {
+                    "airport": "BOS",
+                    "terminal": "B"
+                  },
+                  "destination": {
+                    "airport": "YYZ",
+                    "terminal": "1"
+                  },
+                  "marketing_airline": "AC",
+                  "operating_airline": "AC",
+                  "flight_number": "7687",
+                  "aircraft": "E75",
+                  "booking_info": {
+                    "travel_class": "ECONOMY",
+                    "booking_code": "A",
+                    "seats_remaining": 1
+                  }
+                }
+              ]
+            },
+            "inbound": {
+              "flights": [
+                {
+                  "departs_at": "2017-12-28T06:30",
+                  "arrives_at": "2017-12-28T08:02",
+                  "origin": {
+                    "airport": "YYZ",
+                    "terminal": "1"
+                  },
+                  "destination": {
+                    "airport": "BOS",
+                    "terminal": "B"
+                  },
+                  "marketing_airline": "AC",
+                  "operating_airline": "AC",
+                  "flight_number": "7622",
+                  "aircraft": "E75",
+                  "booking_info": {
+                    "travel_class": "ECONOMY",
+                    "booking_code": "K",
+                    "seats_remaining": 9
+                  }
+                }
+              ]
+            }
+          }
+        ],
+        "fare": {
+          "total_price": "246.39",
+          "price_per_adult": {
+            "total_fare": "246.39",
+            "tax": "79.39"
+          },
+          "restrictions": {
+            "refundable": false,
+            "change_penalties": true
+          }
+        }
+      }
+    ]
+  }
+
 class LandMarks extends Component {
 
   constructor(props){
     super(props);
     this.state = {
       query: '',
-      cityjson: NYdata //hard-coded set cityjson data
+      cityjson: NYdata, //hard-coded set cityjson data
+      origin: 'BOS',
+      destination: 'YYZ',
+      departure_date: '2017-12-25',
+      return_date: '2017-12-28',
+      flightjson: Flightdata
     }
   }
 
+
+  search_flights() {
+    let origin = this.state.origin
+    let destination = this.state.destination
+    let departure_date = this.state.departure_date
+    let return_date = this.state.return_date
+    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&number_of_results=1`;
+    console.log("featch- get request URL:", flight_url)
+    // fetch(flight_url, {
+    //   method: 'GET'
+    // })
+    // .then(response => response.json())
+    // .then(json => {
+    //   const flightdata = json;
+    //   console.log("flightdata", flightdata);
+    //   this.setState({flightjson: flightdata});
+    // });
+
+  }
+
   search() {
-    console.log('this.state.query', this.state)
     let city = this.state.query    
     let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&city_name=${city}&category=landmark&geonames=false&vibes=false&social_media=false&image_size=small&number_of_images=1&number_of_results=5`;
     console.log("featch- get request URL:", base_url)
@@ -242,7 +339,7 @@ class LandMarks extends Component {
 
   render() {
     return (
-      <div className="App">
+      <div className="LandMarks">
         <div className="App-title"> amadeus api</div>
         <h1>Landmarks Search</h1>
         <FormGroup>
@@ -252,11 +349,11 @@ class LandMarks extends Component {
               placeholder="Search for a city"
               value={this.state.query}
               onChange={ e => {this.setState({ query: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search()
-                }
-              }}
+            //   onKeyPress={ e=> {
+            //     if (e.key === 'Enter') {
+            //       this.search()
+            //     }
+            //   }}
             />
             <InputGroup.Addon onClick={ () => this.search() }>
               <Glyphicon glyph="search">
@@ -266,9 +363,100 @@ class LandMarks extends Component {
 
         </FormGroup>
 
+
+    <div className="Flights">
+        <div className="App-title"> amadeus api</div>
+        <h1>Flights Search</h1>
+        <FormGroup>
+          <InputGroup>
+            <FormControl
+              type="text"
+              placeholder="origin"
+              value={this.state.origin}
+              onChange={ e => {this.setState({ origin: e.target.value })} }
+              onKeyPress={ e=> {
+                if (e.key === 'Enter') {
+                  this.search()
+                }
+              }}
+            />
+            <InputGroup.Addon onClick={ () => this.search_flights() }>
+              <Glyphicon glyph="search">
+              </Glyphicon>
+            </InputGroup.Addon>
+          </InputGroup>
+
+        </FormGroup>
+
+
+        <FormGroup>
+          <InputGroup>
+            <FormControl
+              type="text"
+              placeholder="destination"
+              value={this.state.destination}
+              onChange={ e => {this.setState({ destination: e.target.value })} }
+              onKeyPress={ e=> {
+                if (e.key === 'Enter') {
+                  this.search_flights()
+                }
+              }}
+            />
+            <InputGroup.Addon onClick={ () => this.search_flights() }>
+              <Glyphicon glyph="search">
+              </Glyphicon>
+            </InputGroup.Addon>
+          </InputGroup>
+
+        </FormGroup>
+
+
+      <FormGroup>
+          <InputGroup>
+            <FormControl
+              type="text"
+              placeholder="departure_date 2017-12-25"
+              value={this.state.departure_date}
+              onChange={ e => {this.setState({ departure_date: e.target.value })} }
+              onKeyPress={ e=> {
+                if (e.key === 'Enter') {
+                  this.search_flights()
+                }
+              }}
+            />
+            <InputGroup.Addon onClick={ () => this.search_flights() }>
+              <Glyphicon glyph="search">
+              </Glyphicon>
+            </InputGroup.Addon>
+          </InputGroup>
+
+        </FormGroup>
+
+
+        <FormGroup>
+          <InputGroup>
+            <FormControl
+              type="text"
+              placeholder="return_date 2017-12-28"
+              value={this.state.return_date}
+              onChange={ e => {this.setState({ return_date: e.target.value })} }
+              onKeyPress={ e=> {
+                if (e.key === 'Enter') {
+                  this.search_flights()
+                }
+              }}
+            />
+            <InputGroup.Addon onClick={ () => this.search_flights() }>
+              <Glyphicon glyph="search">
+              </Glyphicon>
+            </InputGroup.Addon>
+          </InputGroup>
+
+        </FormGroup>
+    </div>
+
+
         <div className="return_data">
-          <div>Citydata</div>
-          <div>city info</div>
           <Profile 
             city={ this.state.cityjson.current_city.name }
             landmark={ this.state.cityjson.points_of_interest}
@@ -277,10 +465,19 @@ class LandMarks extends Component {
             <div>
               <h2>Maps</h2>
               <Map />
-            
+             </div>Flight data -- only show the lowest price
+                <div>{ JSON.stringify(this.state.flightjson) }</div>
+                <Flights 
+                  result={ this.state.flightjson.results[0].itineraries }
+                  fare={ this.state.flightjson.results[0].fare } 
+                  restrictions={ this.state.flightjson.results[0].restrictions }
+                  />  
+             <div>
+                 
              </div>
         </div>
       </div>
+
     )
   }
 }
