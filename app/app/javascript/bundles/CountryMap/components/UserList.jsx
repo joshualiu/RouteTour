@@ -66,7 +66,7 @@ export default class UserList extends React.Component {
           <div className="userlistdiv">
           {jsonUserList.users.map(function(user){
                     return (
-                      <a href={"/trip/chat/" + user.id + '?name=' + user.name} key={user.id}>
+                      <a href={"/trip/chat/" + user.id + '?name=' + user.name} key={user.id} target="_blank">
                       <div className="circleBase type1"></div>
                       <span key={user.id} >{user.name} {user.city}</span>
                       </a>
