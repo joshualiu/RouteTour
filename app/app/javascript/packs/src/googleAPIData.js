@@ -1,5 +1,6 @@
 import React from 'react';
-import RenderPlaces from './renderPlaces.js'
+import RenderPlaces from './renderPlaces.js';
+import Parser from 'html-react-parser';
 
 class GoogleAPIData extends React.Component{  
   constructor(props){
@@ -28,10 +29,10 @@ class GoogleAPIData extends React.Component{
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 for (var i = 0; i < result.length; i++) { 
-                  this.state.data.push({p:result[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:result[i].name,r:result[i].rating});      
+                  this.state.data.push({p:result[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:result[i].name,r:result[i].rating,type:typeForAPI[elem],maps_ref:Parser(result[i].photos[0].html_attributions[0])});      
                 }
               }  
-            //debugger;
+            debugger;
             return;
            
           })    
@@ -39,7 +40,7 @@ class GoogleAPIData extends React.Component{
         console.log("data",this.state.data);
         //debugger;
         setTimeout(()=>{this.setState(this.state.data)}, 1000);
-        //this.state.data = [];
+        this.state.data = [];
         return;
       }
       return;
