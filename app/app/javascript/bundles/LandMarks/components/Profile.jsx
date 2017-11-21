@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Profile extends Component {
 
   render() {
-    console.log(this.props)
     let cityname = this.props.city !== null ? this.props.city : 'Unknow city'
     return (
       <div>

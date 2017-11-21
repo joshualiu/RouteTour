@@ -4,6 +4,7 @@ import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import Profile from './Profile';
 import Map from './Map';
 import Flights from './Flights';
+import { EWOULDBLOCK } from 'constants';
 
 const NYdata = {
   "current_city": {
@@ -289,7 +290,7 @@ class LandMarks extends Component {
     super(props);
     this.state = {
       query: '',
-      cityjson: NYdata, //hard-coded set cityjson data
+      cityjson: Todata, //hard-coded set cityjson data
       origin: 'BOS',
       destination: 'YYZ',
       departure_date: '2017-12-25',
@@ -304,7 +305,7 @@ class LandMarks extends Component {
     let destination = this.state.destination
     let departure_date = this.state.departure_date
     let return_date = this.state.return_date
-    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&number_of_results=1`;
+    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
     console.log("featch- get request URL:", flight_url)
     // fetch(flight_url, {
     //   method: 'GET'
@@ -465,12 +466,12 @@ class LandMarks extends Component {
             <div>
               <h2>Maps</h2>
               <Map />
-             </div>Flight data -- only show the lowest price
-                <div>{ JSON.stringify(this.state.flightjson) }</div>
+             </div><h2>Flight data -- only show the lowest price</h2>
+
                 <Flights 
-                  result={ this.state.flightjson.results[0].itineraries }
-                  fare={ this.state.flightjson.results[0].fare } 
-                  restrictions={ this.state.flightjson.results[0].restrictions }
+                  results={ this.state.flightjson.results[0].itineraries[0] }
+                  fare={ this.state.flightjson.results[0].fare.total_price } 
+                  restrictions={ this.state.flightjson.results[0].fare.restrictions }
                   />  
              <div>
                  
