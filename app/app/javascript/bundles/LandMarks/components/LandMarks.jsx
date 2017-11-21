@@ -124,7 +124,7 @@ class LandMarks extends Component {
       destination: 'YYZ',
       departure_date: '2017-12-25',
       return_date: '2017-12-28',
-      flightjson: Flightdata
+      flightjson: null
     }
   }
 
@@ -145,6 +145,8 @@ class LandMarks extends Component {
     //   console.log("flightdata", flightdata);
     //   this.setState({flightjson: flightdata});
     // });
+    this.setState({flightjson: Flightdata})
+    
 
   }
 
@@ -165,7 +167,6 @@ class LandMarks extends Component {
 
     // hard-coded for now
     this.setState({cityjson: Todata})
-    console.log("cityata", this.state.cityjson)
   }
 
   render() {
@@ -290,25 +291,20 @@ class LandMarks extends Component {
     </div>
 
 
+
+        <div className="return_flights">
+          <div>Flight data -- only show the lowest price</div>
+              <Flights
+                data={ this.state.flightjson } 
+                />  
+          </div>
+
         <div className="return_data">
-          {/* <Profile 
-            city={ this.state.cityjson.current_city.name }
-            landmark={ this.state.cityjson.points_of_interest}
-            /> */}
            {/* <div>{ JSON.stringify(this.state.cityjson) }</div>  */}
             <div>
               <h2>Maps</h2>
               <Map />
               <h2>Weather</h2>
-             </div><h2>Flight data -- only show the lowest price</h2>
-
-                <Flights 
-                  results={ this.state.flightjson.results[0].itineraries[0] }
-                  fare={ this.state.flightjson.results[0].fare.total_price } 
-                  restrictions={ this.state.flightjson.results[0].fare.restrictions }
-                  />  
-             <div>
-                 
              </div>
         </div>
       </div>
