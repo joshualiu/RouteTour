@@ -128,7 +128,8 @@ class LandMarks extends Component {
       return_date: '2017-12-28',
       flightjson: null,
       restaurantData: null,
-      restaurantQuery: ''
+      googleQuery: '',
+      hotelData: null
     }
   }
 
@@ -174,7 +175,7 @@ class LandMarks extends Component {
   }
 
 
-  geocodeAddress = (address, type) => {
+  geocodeAddress_restaurants = (address, type) => {
     this.geocoder.geocode({ 'address': address }, (results, status) => {
       let latGeo;
       let lngGeo;
@@ -209,8 +210,9 @@ class LandMarks extends Component {
 
   google_search(){
     console.log("search")
-    this.geocodeAddress(this.state.query, "restaurant", "restaurant")
-    
+    this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
+    // this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
+
   }
 
 
@@ -343,8 +345,6 @@ class LandMarks extends Component {
         </div>
 
 
-        <div className="return_hotels">Hotels Search</div>
-
         <div className="Google_Search">
           <div className="Search-title"><h2>Google Maps Search</h2></div>
           <FormGroup>
@@ -352,8 +352,8 @@ class LandMarks extends Component {
               <FormControl
                 type="text"
                 placeholder="Toronto"
-                value={this.state.query}
-                onChange={ e => {this.setState({ query: e.target.value })} }
+                value={this.state.googleQuery}
+                onChange={ e => {this.setState({ googleQuery: e.target.value })} }
                 onKeyPress={ e=> {
                   if (e.key === 'Enter') {
                     this.google_search()
@@ -371,9 +371,14 @@ class LandMarks extends Component {
 
 
 
-          <div><h3>Restaurant Results</h3></div>
+          <div><h3>Restaurants Results</h3></div>
             <div>
               <RenderRestaurants data={this.state.restaurantData} />
+            </div>
+
+            <div><h3>Hotels Results</h3></div>
+            <div>
+              {/* <RenderRestaurants data={this.state.restaurantData} /> */}
             </div>
 
 
