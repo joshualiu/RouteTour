@@ -4,6 +4,8 @@ import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import RenderLandMarks from './RenderLandMarks';
 import Map from './Map';
 import Flights from './Flights';
+import RenderRestaurants from './RenderRestaurants';
+
 
 
 const Todata = {
@@ -124,7 +126,9 @@ class LandMarks extends Component {
       destination: 'YYZ',
       departure_date: '2017-12-25',
       return_date: '2017-12-28',
-      flightjson: null
+      flightjson: null,
+      restaurantData: null,
+      restaurantQuery: ''
     }
   }
 
@@ -168,6 +172,47 @@ class LandMarks extends Component {
     // hard-coded for now
     this.setState({cityjson: Todata})
   }
+
+
+  geocodeAddress = (address, type) => {
+    this.geocoder.geocode({ 'address': address }, (results, status) => {
+      let latGeo;
+      let lngGeo;
+      if (status === google.maps.GeocoderStatus.OK) {
+        latGeo = results[0].geometry.location.lat();
+        lngGeo = results[0].geometry.location.lng();
+        let locationToCenter = {lat: latGeo, lng: lngGeo};
+        let service = new google.maps.places.PlacesService(document.createElement('div'));
+        let typeForAPI = type; //'lodging', 'park','museum','amusement_park','art_gallery', 'restaurant'
+        const data = [];
+        // for(let elem in typeForAPI){
+          service.nearbySearch({
+            location: locationToCenter,
+            radius: 5000,
+            type: type
+          },(result, status) => {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                console.log('ok, results', result)
+                this.setState({restaurantData: result})
+              }  
+          })    
+      
+      }
+    });
+  }
+
+
+  componentDidMount () {
+    this.geocoder = new google.maps.Geocoder(); 
+  }
+
+
+  google_search(){
+    console.log("search")
+    this.geocodeAddress(this.state.query, "restaurant", "restaurant")
+    
+  }
+
 
   render() {
     return (
@@ -290,14 +335,49 @@ class LandMarks extends Component {
         </FormGroup>
     </div>
 
+      <div className="return_flights">
+        <div>Flight data -- only show the lowest price</div>
+            <Flights
+              data={ this.state.flightjson } 
+              />  
+        </div>
 
 
-        <div className="return_flights">
-          <div>Flight data -- only show the lowest price</div>
-              <Flights
-                data={ this.state.flightjson } 
-                />  
-          </div>
+        <div className="return_hotels">Hotels Search</div>
+
+        <div className="Google_Search">
+          <div className="Search-title"><h2>Google Maps Search</h2></div>
+          <FormGroup>
+            <InputGroup>
+              <FormControl
+                type="text"
+                placeholder="Toronto"
+                value={this.state.query}
+                onChange={ e => {this.setState({ query: e.target.value })} }
+                onKeyPress={ e=> {
+                  if (e.key === 'Enter') {
+                    this.google_search()
+                  }
+                }}
+              />
+              <InputGroup.Addon onClick={ () => this.google_search() }>
+                <Glyphicon glyph="search">
+                </Glyphicon>
+              </InputGroup.Addon>
+            </InputGroup>
+
+          </FormGroup>
+      </div>
+
+
+
+          <div><h3>Restaurant Results</h3></div>
+            <div>
+              <RenderRestaurants data={this.state.restaurantData} />
+            </div>
+
+
+
 
         <div className="return_data">
            {/* <div>{ JSON.stringify(this.state.cityjson) }</div>  */}
