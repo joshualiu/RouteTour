@@ -4,7 +4,7 @@ import { FormGroup, FormControl, InputGroup, Glyphicon } from 'react-bootstrap';
 import Profile from './Profile';
 import Map from './Map';
 import Flights from './Flights';
-import { EWOULDBLOCK } from 'constants';
+// import { EWOULDBLOCK } from 'constants';
 
 const NYdata = {
   "current_city": {
@@ -466,6 +466,7 @@ class LandMarks extends Component {
             <div>
               <h2>Maps</h2>
               <Map />
+              <h2>Weather</h2>
              </div><h2>Flight data -- only show the lowest price</h2>
 
                 <Flights 
