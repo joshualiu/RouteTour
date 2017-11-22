@@ -21,7 +21,8 @@ export default class UserList extends React.Component {
                         {"id": 3, "name":"Test User 3", "city":"montreal"},
                         {"id": 4, "name":"Test User 3", "city":"montreal"}
                       ]
-                    } };
+                    } 
+                  };
   }
 
   updateCity = (name) => {
