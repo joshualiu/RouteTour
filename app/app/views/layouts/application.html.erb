@@ -6,6 +6,10 @@
 
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'hello-world-bundle' %>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDGGhzVWA98mR7ZYK31u_ZgsDOtAS_YIqI&libraries=places"></script>
   </head>
   <body>
     <p class="notice"><%= notice %></p>
