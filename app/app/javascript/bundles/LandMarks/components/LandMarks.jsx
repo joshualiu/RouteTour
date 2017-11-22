@@ -5,6 +5,7 @@ import RenderLandMarks from './RenderLandMarks';
 import Map from './Map';
 import Flights from './Flights';
 import RenderRestaurants from './RenderRestaurants';
+import Weather from './Weather';
 
 
 
@@ -190,7 +191,8 @@ const Flightdata = {
           service.nearbySearch({
             location: locationToCenter,
             radius: 5000,
-            type: type
+            type: type,
+            keyword: "restaurant"
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 console.log('ok, results', result)
@@ -217,7 +219,8 @@ const Flightdata = {
           service.nearbySearch({
             location: locationToCenter,
             radius: 5000,
-            type: type
+            type: type,
+            keyword: "hospitality"
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 console.log('ok, results', result)
@@ -235,7 +238,6 @@ const Flightdata = {
 
 
   google_search(){
-    console.log("search")
     this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
     this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
 
@@ -245,6 +247,7 @@ const Flightdata = {
   render() {
     return (
       <div className="LandMarks">
+      <h1>React component Dashboard-landmarks</h1>
         <div className="App-title"><h1>LandMarks Search</h1></div>
         <FormGroup>
           <InputGroup>
@@ -416,6 +419,7 @@ const Flightdata = {
               <h2>Maps</h2>
               <Map />
               <h2>Weather</h2>
+              <Weather />
              </div>
         </div>
       </div>

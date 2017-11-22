@@ -8,7 +8,7 @@ class RenderRestaurants extends Component {
     
     render(){
       if(this.props.data){
-        const results = this.props.data.slice(0,2)
+        const results = this.props.data.slice(0,5)
         return (
           <div>
             {results.map((elm, k) => {

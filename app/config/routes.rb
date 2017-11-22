@@ -7,6 +7,9 @@ Rails.application.routes.draw do
   get 'trip/create'
 
   get 'trip/new'
+
+  get 'trip/dashboard' => 'chat#dashboard'
+
   get '/trip/chat' => 'chat#new'
   get '/trip/chat/:tripid' => 'chat#trip'
   
