@@ -8,6 +8,7 @@ import RenderRestaurants from './RenderRestaurants';
 
 
 
+
 const Todata = {
   "current_city": {
       "name": "Toronto",
@@ -115,7 +116,7 @@ const Flightdata = {
     ]
   }
 
-class LandMarks extends Component {
+  class LandMarks extends Component {
 
   constructor(props){
     super(props);
@@ -185,7 +186,6 @@ class LandMarks extends Component {
         let locationToCenter = {lat: latGeo, lng: lngGeo};
         let service = new google.maps.places.PlacesService(document.createElement('div'));
         let typeForAPI = type; //'lodging', 'park','museum','amusement_park','art_gallery', 'restaurant'
-        const data = [];
         // for(let elem in typeForAPI){
           service.nearbySearch({
             location: locationToCenter,
@@ -203,6 +203,32 @@ class LandMarks extends Component {
   }
 
 
+  geocodeAddress_hotels = (address, type) => {
+    this.geocoder.geocode({ 'address': address }, (results, status) => {
+      let latGeo;
+      let lngGeo;
+      if (status === google.maps.GeocoderStatus.OK) {
+        latGeo = results[0].geometry.location.lat();
+        lngGeo = results[0].geometry.location.lng();
+        let locationToCenter = {lat: latGeo, lng: lngGeo};
+        let service = new google.maps.places.PlacesService(document.createElement('div'));
+        let typeForAPI = type; //'lodging', 'park','museum','amusement_park','art_gallery', 'restaurant'
+        // for(let elem in typeForAPI){
+          service.nearbySearch({
+            location: locationToCenter,
+            radius: 5000,
+            type: type
+          },(result, status) => {
+              if (status === google.maps.places.PlacesServiceStatus.OK) {
+                console.log('ok, results', result)
+                this.setState({hotelData: result})
+              }  
+          })    
+      
+      }
+    });
+  }
+
   componentDidMount () {
     this.geocoder = new google.maps.Geocoder(); 
   }
@@ -211,7 +237,7 @@ class LandMarks extends Component {
   google_search(){
     console.log("search")
     this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
-    // this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
+    this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
 
   }
 
@@ -378,7 +404,7 @@ class LandMarks extends Component {
 
             <div><h3>Hotels Results</h3></div>
             <div>
-              {/* <RenderRestaurants data={this.state.restaurantData} /> */}
+              <RenderRestaurants data={this.state.hotelData} />
             </div>
 
 
