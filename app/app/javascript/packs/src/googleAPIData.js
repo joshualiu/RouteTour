@@ -88,12 +88,11 @@ class GoogleAPIData extends React.Component{
                 <div className="col-xs-4 col-sm-2">
 
                   <button type="submit" className="btn btn-default btn-lg">
-                    <span className="glyphicon glyphicon-search" aria-hidden="true"></span>
+                   Submit
                   </button>
-                  
                   <div>
                     <RenderPlaces data={this.state.data} />
-                    </div>
+                  </div>
 
                 </div>
               </div>

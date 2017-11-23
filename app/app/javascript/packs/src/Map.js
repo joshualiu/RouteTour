@@ -11,7 +11,6 @@ class Map extends React.Component{
     this.state={
       data: null,
       icon: [],
-      html: '',
     }
   }
   
@@ -23,11 +22,9 @@ class Map extends React.Component{
     submitEvent.preventDefault();
     $.getJSON(`https://query.yahooapis.com/v1/public/yql?q=select * from weather.forecast where woeid in (select woeid from geo.places(1) where text='${this.searchInputElement.value}')&format=json`)
     .then((data) => {
-      this.setState({data:data});
-      this.iconLogic();
+      var temp = this.iconLogic(data);
+      this.setState({data:data,icon:temp});
     })
-    
-    
   }
   
   
@@ -35,49 +32,39 @@ class Map extends React.Component{
     
     switch(condid) {
       case '0':
+      case '2':
       return 'wi-tornado';
       case '1':
       return 'wi-storm-showers';
-      case '2':
-      return 'wi-tornado';
       case '3':
-      return 'wi-thunderstorm';
       case '4':
       return 'wi-thunderstorm';
       case '5':
       return 'wi-snow';
       case '6':
-      return 'wi-rain-mix';
       case '7':
       return 'wi-rain-mix';
       case '8':
-      return 'wi-sprinkle';
       case '9':
       return 'wi-sprinkle';
       case '10':
       return 'wi-hail';
       case '11':
-      return 'wi-showers';
       case '12':
       return 'wi-showers';
       case '13':
+      case '15':
+      case '16':
       return 'wi-snow';
       case '14':
       return 'wi-storm-showers';
-      case '15':
-      return 'wi-snow';
-      case '16':
-      return 'wi-snow';
       case '17':
-      return 'wi-hail';
       case '18':
       return 'wi-hail';
       case '19':
       return 'wi-cloudy-gusts';
       case '20':
-      return 'wi-fog';
       case '21':
-      return 'wi-fog';
       case '22':
       return 'wi-fog';
       case '23':
@@ -89,19 +76,16 @@ class Map extends React.Component{
       case '26':
       return 'wi-cloudy';
       case '27':
-      return 'wi-night-cloudy';
-      case '28':
-      return 'wi-day-cloudy';
       case '29':
       return 'wi-night-cloudy';
+      case '28':
       case '30':
       return 'wi-day-cloudy';
       case '31':
+      case '33':
       return 'wi-night-clear';
       case '32':
       return 'wi-day-sunny';
-      case '33':
-      return 'wi-night-clear';
       case '34':
       return 'wi-day-sunny-overcast';
       case '35':
@@ -109,9 +93,7 @@ class Map extends React.Component{
       case '36':
       return 'wi-day-sunny';
       case '37':
-      return 'wi-thunderstorm';
       case '38':
-      return 'wi-thunderstorm';
       case '39':
       return 'wi-thunderstorm';
       case '40':
@@ -119,13 +101,12 @@ class Map extends React.Component{
       case '41':
       case '42':
       case '43':
+      case '46':
       return 'wi-snow';
       case '44':
       return 'wi-cloudy';
       case '45':
       return 'wi-lightning';
-      case '46':
-      return 'wi-snow';
       case '47':
       return 'wi-thunderstorm';
       case '3200':
@@ -133,38 +114,11 @@ class Map extends React.Component{
       return 'wi-cloud';
     }            
   }
-  iconLogic = () =>{
-    console.log("into icon logic",this.state.data);
-    if(this.state.data){ 
-      // this.state.data.query.results.channel.item.forecast.forEach((element) => {
-      
-      //     var temp = this.setWeatherIcon(String(element.code));
-      //     //console.log(temp);
-      //     this.state.icon.push(temp);
-      //     //console.log("look",this.state.icon);
-      
-      //  })
-      const iconList = this.state.data.query.results.channel.item.forecast.map(item => this.setWeatherIcon(item.code));
-      //console.log("icon",this.state.icon);
-      this.setState({ icon: iconList });
-      // return this.iconHtml();
+  iconLogic(data){
+    if(data){ 
+      return data.query.results.channel.item.forecast.map(item => this.setWeatherIcon(item.code));
     }
   }
-  
-  // iconHtml = () => {
-  //     this.state.icon.map((icon) =>{
-  //         return (
-  //             <div className="overlay-marker" style={{width: 20 + 'px',height: 20 + 'px',position: 'absolute',top: 53 + 'px', left: 528 + 'px'}}>
-  //                 <i className={`wi ${icon}`} />
-  //             </div>
-  //         );
-  //     })
-  
-  //     this.setState({html:html});
-  //     return html;  
-  
-  // }
-  
   
   render(){
     return(
@@ -183,8 +137,7 @@ class Map extends React.Component{
                 
               </div>
               <div>
-                <button type="submit">
-                </button>
+                <button type="submit">Submit</button>
               </div>
             </div>
           </form>
@@ -194,7 +147,7 @@ class Map extends React.Component{
               {
                 this.state.icon.map((icon, idx) =>{
                   return (
-                  <div className="overlay-marker" key={idx} style={{width: 20 + 'px',height: 20 + 'px',position: 'absolute',top: 53 + 'px', left: 528 + 'px'}}>
+                  <div className="overlay-marker" key={Math.random()} style={{width: 20 + 'px',height: 20 + 'px',position: 'absolute',top: 53 + 'px', left: 528 + 'px'}}>
                     <i className={`wi ${icon}`} />
                   </div>
                   );
