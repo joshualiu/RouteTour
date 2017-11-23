@@ -11,7 +11,8 @@
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
     "react-forecast": "0.0.7",
-    "react-on-rails": "^10.0.2"
+    "react-on-rails": "^10.0.2",
+    "watson-developer-cloud": "^2.42.0"
   },
   "devDependencies": {
     "babel-preset-react": "^6.5.0",
