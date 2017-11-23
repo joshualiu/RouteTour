@@ -2,11 +2,14 @@ import React from 'react';
 import RenderPlaces from './renderPlaces.js';
 import Parser from 'html-react-parser';
 
+
 class GoogleAPIData extends React.Component{  
   constructor(props){
     super(props);
     this.state = {
       data: [],
+      latWeather: 34.05,
+      lngWeather: 118.25,
     };  
   }
   
@@ -17,14 +20,18 @@ class GoogleAPIData extends React.Component{
       if (status === google.maps.GeocoderStatus.OK) {
         latGeo = results[0].geometry.location.lat();
         lngGeo = results[0].geometry.location.lng();
+        this.setState({latWeather:latGeo,lngWeather:lngGeo});
         var locationToCenter = {lat: latGeo, lng: lngGeo};
         var service = new google.maps.places.PlacesService(document.createElement('div'));
-        var typeForAPI = ['lodging','restaurant']; //'park','museum','amusement_park','art_gallery'
+        var typeForAPI = ['lodging']; //'park','museum','amusement_park','art_gallery'
         for(let elem in typeForAPI){
           service.nearbySearch({
             location: locationToCenter,
             radius: 5000,
-            type: typeForAPI[elem],
+            type: null,
+            minprice: 4,
+            //type: typeForAPI[elem],
+            keyword: "tourist attractions"
             //keyword: "POI",
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
@@ -32,14 +39,14 @@ class GoogleAPIData extends React.Component{
                   this.state.data.push({p:result[i].photos[0].getUrl(({'maxWidth': 200, 'maxHeight': 200})),n:result[i].name,r:result[i].rating,type:typeForAPI[elem],maps_ref:Parser(result[i].photos[0].html_attributions[0])});      
                 }
               }  
-            debugger;
+            
             return;
            
           })    
         }
         console.log("data",this.state.data);
-        //debugger;
-        setTimeout(()=>{this.setState(this.state.data)}, 1000);
+        
+        setTimeout(()=>{this.setState(this.state.data)}, 2000);
         this.state.data = [];
         return;
       }
@@ -91,7 +98,7 @@ class GoogleAPIData extends React.Component{
                 </div>
               </div>
             </form>
-
+           
           </div>
         </div>
       </div>

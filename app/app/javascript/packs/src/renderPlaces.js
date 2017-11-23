@@ -9,9 +9,10 @@ class RenderPlaces extends React.Component{
     }
     
     render(){
-       // debugger;
+       
         
         if(this.props.data.length !== 0 ){  
+            console.log("data to render",this.props.data);
             this.props.data.forEach((elem) => {
                 if(elem.type === 'restaurant'){
                     this.state.arr_restaurant.push(

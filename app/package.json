@@ -5,10 +5,12 @@
     "coffeescript": "1.12.7",
     "create-react-class": "^15.6.2",
     "google-maps-react": "^1.1.2",
+    "jquery": "^3.2.1",
     "node-uuid": "^1.4.2",
     "prop-types": "^15.6.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
+    "react-forecast": "0.0.7",
     "react-on-rails": "^10.0.2"
   },
   "devDependencies": {
