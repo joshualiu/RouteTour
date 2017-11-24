@@ -159,25 +159,25 @@ const Flightdata = {
 
   search() {
     let city = this.state.query    
-    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&city_name=${city}&category=landmark&geonames=false&vibes=false&social_media=false&image_size=small&number_of_images=1&number_of_results=5`;
+    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
     console.log("featch- get request URL:", base_url)
     console.log("hard-coded NY data for now", Todata)
-    // fetch(base_url, {
-    //   method: 'GET'
-    // })
-    // .then(response => response.json())
-    // .then(json => {
-    //   const citydata = json;
-    //   console.log("citydata", citydata);
-    //   this.setState({cityjson: citydata});
-    // });
+    fetch(base_url, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      const citydata = json;
+      console.log("citydata", citydata);
+      this.setState({cityjson: citydata});
+    });
 
     // hard-coded for now
-    this.setState({cityjson: Todata})
+    // this.setState({cityjson: Todata})
   }
 
 
-  geocodeAddress_restaurants = (address, type) => {
+  geocodeAddress_landmarks = (address, type, keyword, data) => {
     this.geocoder.geocode({ 'address': address }, (results, status) => {
       let latGeo;
       let lngGeo;
@@ -192,11 +192,11 @@ const Flightdata = {
             location: locationToCenter,
             radius: 5000,
             type: type,
-            keyword: "restaurant"
+            keyword: "tourist landmarks"
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 console.log('ok, results', result)
-                this.setState({restaurantData: result})
+                this.setState({[data]: result})
               }  
           })    
       
@@ -205,32 +205,32 @@ const Flightdata = {
   }
 
 
-  geocodeAddress_hotels = (address, type) => {
-    this.geocoder.geocode({ 'address': address }, (results, status) => {
-      let latGeo;
-      let lngGeo;
-      if (status === google.maps.GeocoderStatus.OK) {
-        latGeo = results[0].geometry.location.lat();
-        lngGeo = results[0].geometry.location.lng();
-        let locationToCenter = {lat: latGeo, lng: lngGeo};
-        let service = new google.maps.places.PlacesService(document.createElement('div'));
-        let typeForAPI = type; //'lodging', 'park','museum','amusement_park','art_gallery', 'restaurant'
-        // for(let elem in typeForAPI){
-          service.nearbySearch({
-            location: locationToCenter,
-            radius: 5000,
-            type: type,
-            keyword: "hospitality"
-          },(result, status) => {
-              if (status === google.maps.places.PlacesServiceStatus.OK) {
-                console.log('ok, results', result)
-                this.setState({hotelData: result})
-              }  
-          })    
+  // geocodeAddress_hotels = (address, type) => {
+  //   this.geocoder.geocode({ 'address': address }, (results, status) => {
+  //     let latGeo;
+  //     let lngGeo;
+  //     if (status === google.maps.GeocoderStatus.OK) {
+  //       latGeo = results[0].geometry.location.lat();
+  //       lngGeo = results[0].geometry.location.lng();
+  //       let locationToCenter = {lat: latGeo, lng: lngGeo};
+  //       let service = new google.maps.places.PlacesService(document.createElement('div'));
+  //       let typeForAPI = type; //'lodging', 'park','museum','amusement_park','art_gallery', 'restaurant'
+  //       // for(let elem in typeForAPI){
+  //         service.nearbySearch({
+  //           location: locationToCenter,
+  //           radius: 5000,
+  //           type: type,
+  //           keyword: "hotel"
+  //         },(result, status) => {
+  //             if (status === google.maps.places.PlacesServiceStatus.OK) {
+  //               console.log('ok, results', result)
+  //               this.setState({hotelData: result})
+  //             }  
+  //         })    
       
-      }
-    });
-  }
+  //     }
+  //   });
+  // }
 
   componentDidMount () {
     this.geocoder = new google.maps.Geocoder(); 
@@ -238,8 +238,8 @@ const Flightdata = {
 
 
   google_search(){
-    this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
-    this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
+    // this.geocodeAddress(this.state.googleQuery, "restaurant", "restaurant", "restaurantData");
+    this.geocodeAddress_landmarks(this.state.googleQuery, null, "best hotel", "hotelData");
 
   }
 
