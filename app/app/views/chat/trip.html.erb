@@ -16,7 +16,7 @@
   </head>
   <body>
     <div style="width: 100%;">
-    <div style="float:left; width: 60%">
+    <div style="float:left; width: 35%">
         <ul id="messages"></ul>
         <form action="" style="opacity:0.9" >
         <input id="m" autocomplete="off" /><button>Send</button>
@@ -45,12 +45,17 @@
         });
         </script>
     </div>
-    <div class="restaurantlistdiv" style="float:right;" display="grid" >
+    <%# <div class="restaurantlistdiv" style="float:right;" display="grid" >
     <span>Fake Resaurant</span>
     <span>Fake Resaurant 2</span>
     <span>Fake Resaurant 3</span>
     <span>Fake Resaurant 4</span>
     <span>Fake Resaurant 5</span>
-    </div>
+    </div> %>
+    <div>im here
+      <div id='whatever' style="float:right; width: 65%">
+    <%= react_component("LandMarks", props: @hello_world_props, prerender: false) %>
+  </div>
+  </div>
   </body>
 </html>

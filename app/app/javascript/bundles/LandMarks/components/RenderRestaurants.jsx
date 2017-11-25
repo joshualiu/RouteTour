@@ -49,7 +49,6 @@ class RenderRestaurants extends Component {
                 > 
                   <img src={elm.photos[0].getUrl(({'maxWidth': 1000, 'maxHeight': 1000}))} />
 
-
                   </GridTile>
                   
             ))}
