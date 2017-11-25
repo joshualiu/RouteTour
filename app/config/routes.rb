@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     end
   end
 
-  get 'hello_world', to: 'hello_world#index'
+  # get 'hello_world', to: 'hello_world#index'
   #get 'chat/new'
   #get "/chat" => redirect("http://localhost:8080")
   get 'trip/index'

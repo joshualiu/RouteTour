@@ -131,7 +131,8 @@ const Flightdata = {
       flightjson: null,
       restaurantData: null,
       googleQuery: '',
-      hotelData: null
+      hotelData: null,
+      weatherQuery: null,
     }
   }
 
@@ -192,7 +193,7 @@ const Flightdata = {
             location: locationToCenter,
             radius: 5000,
             type: type,
-            keyword: "restaurant"
+            //keyword: "restaurant"
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 console.log('ok, results', result)
@@ -220,7 +221,7 @@ const Flightdata = {
             location: locationToCenter,
             radius: 5000,
             type: type,
-            keyword: "hospitality"
+            //keyword: ""
           },(result, status) => {
               if (status === google.maps.places.PlacesServiceStatus.OK) {
                 console.log('ok, results', result)
@@ -238,8 +239,8 @@ const Flightdata = {
 
 
   google_search(){
-    this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
-    this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
+    //this.geocodeAddress_restaurants(this.state.googleQuery, "restaurant");
+    // this.geocodeAddress_hotels(this.state.googleQuery, "lodging");
 
   }
 
@@ -287,7 +288,8 @@ const Flightdata = {
               onChange={ e => {this.setState({ origin: e.target.value })} }
               onKeyPress={ e=> {
                 if (e.key === 'Enter') {
-                  this.search()
+                  this.search();
+                  
                 }
               }}
             />
@@ -353,7 +355,8 @@ const Flightdata = {
               onChange={ e => {this.setState({ return_date: e.target.value })} }
               onKeyPress={ e=> {
                 if (e.key === 'Enter') {
-                  this.search_flights()
+                  this.search_flights();
+                  
                 }
               }}
             />
@@ -386,6 +389,7 @@ const Flightdata = {
                 onKeyPress={ e=> {
                   if (e.key === 'Enter') {
                     this.google_search()
+                    this.setState({weatherQuery: this.state.googleQuery})
                   }
                 }}
               />
@@ -419,7 +423,7 @@ const Flightdata = {
               <h2>Maps</h2>
               <Map />
               <h2>Weather</h2>
-              <Weather />
+              <Weather cityname= {this.state.weatherQuery}/>
              </div>
         </div>
       </div>
