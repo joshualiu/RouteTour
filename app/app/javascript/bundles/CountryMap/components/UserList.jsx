@@ -16,7 +16,7 @@ export default class UserList extends React.Component {
     this.state = { name: this.props.name,
                     arrUserList: {
                       "users": [
-                        {"id": 1, "name":"Test User ", "city":"montreal"},
+                        {"id": 1, "name":"Test User 1", "city":"montreal"},
                         {"id": 2, "name":"Test User 2", "city":"montreal"},
                         {"id": 3, "name":"Test User 3", "city":"montreal"},
                         {"id": 4, "name":"Test User 3", "city":"montreal"}
@@ -28,7 +28,7 @@ export default class UserList extends React.Component {
   updateCity = (name) => {
     let jsonUserList = {
       "users": [
-        {"id": 7, "name":"Test User ", "city": name},
+        {"id": 7, "name":"Test User 1", "city": name},
         {"id": 8, "name":"Test User 2", "city": name},
         {"id": 9, "name":"Test User 3", "city": name},
         {"id": 10, "name":"Test User 3", "city": name}
