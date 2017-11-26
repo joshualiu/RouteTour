@@ -21,10 +21,13 @@
         <form action="" style="opacity:0.9" >
         <input id="m" autocomplete="off" /><button>Send</button>
         </form>
+         <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
         <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
-        <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+    
         <script>
+       
         $(function () {
+            //var urlToImage = fetch('url-to-image');
             var socket = io("http://localhost:8080");
 
             $.urlParam = function(name){
@@ -42,7 +45,14 @@
             $('#messages').append($('<li>').text(decodeURIComponent(username) +' planning trip ' + tripid + ':  ' + msg));
             window.scrollTo(0, document.body.scrollHeight);
             });
-        });
+            socket.on('suggestion',function(tripid, username,msg){
+              //console.log(msg);
+              htmlstr = `<a href=${msg}>Suggestions</a>`; 
+              console.log(htmlstr);
+              $('#messages').append($('<li>').text(decodeURIComponent(username) +' planning trip ' + tripid + ':  '+ $.parseHTML(htmlstr)));
+              window.scrollTo(0, document.body.scrollHeight);
+            });
+          });
         </script>
     </div>
     <div class="restaurantlistdiv" style="float:right;" display="grid" >

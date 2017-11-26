@@ -13,7 +13,10 @@
     "react-bootstrap": "^0.31.5",
     "react-dom": "^16.1.1",
     "react-on-rails": "^10.0.2",
-    "webpack-merge": "^4.1.1"
+    "webpack-merge": "^4.1.1",
+    "request": "^2.83.0",
+    "url-to-image": "^1.0.0",
+    "watson-developer-cloud": "^2.42.0"
   },
   "devDependencies": {
     "webpack-dev-server": "^2.9.4",
