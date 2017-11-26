@@ -16,33 +16,37 @@ class RenderLandMarks extends Component {
                 landmarks.map((lm, k) => {
                   return (
 
-                    // <div>
-                    //   <ul className="grid">
-                    //         <li>
-                    //           <figure>
-                    //             <img src="http://upload.wikimedia.org/wikipedia/commons/thumb/c/c0/Royal_Ontario_Museum-Michael_Lee-Chin_Crystal.jpg/400px-Royal_Ontario_Museum-Michael_Lee-Chin_Crystal.jpg" alt="img01"/>
-                    //             <figcaption>
-                    //               <h3>Camera</h3>
-                    //               <span>Jacob Cummings</span>
-                    //               <a href="https://www.blog.google/topics/trends/lets-talk-turkey-thanksgiving-food-trends/">Take a look</a>
-                    //             </figcaption>
-                    //           </figure>
-                    //         </li>
-                    //       </ul>
-                    // </div>
-                    <span key={k}>
-                      <h5>{ lm.title }</h5>
-                      <img
-                        alt="Profile"
-                        className="Profile-img"
-                        src={ lm.main_image}
-                      />
-                      <div>Description</div>
-                      <h5>{ lm.details.short_description }</h5>
-                      <h5>{ ['longitude: ', lm.location.longitude, ' latitude: ',lm.location.latitude] }</h5>
-                      <a href= { lm.location.google_maps_link } >Google Maps Page</a><br></br>
-                      <a href= { lm.details.wiki_page_link } >Wiki Page</a>
+                      <span key={k}>
+                          <div>
+                              {/* <ul className="grid"> */}
+                                    <li>
+                                      <figure>
+                                        <img src={ lm.main_image} alt="Profile"/>
+                                          <figcaption>
+                                            <h3>{ lm.title }</h3>
+                                            <span>{ lm.details.short_description }</span>
+                                            <a href= { lm.location.google_maps_link } >Google Map</a><br></br>
+                                            <a href= { lm.details.wiki_page_link } >Wiki</a>
+                                          </figcaption>
+                                      </figure>
+                                    </li>
+                                  {/* </ul> */}
+                      </div>
                     </span>
+
+                    // <span key={k}>
+                    //   <h5>{ lm.title }</h5>
+                    //   <img
+                    //     alt="Profile"
+                    //     className="Profile-img"
+                    //     src={ lm.main_image}
+                    //   />
+                    //   <div>Description</div>
+                    //   <h5>{ lm.details.short_description }</h5>
+                    //   <h5>{ ['longitude: ', lm.location.longitude, ' latitude: ',lm.location.latitude] }</h5>
+                    //   <a href= { lm.location.google_maps_link } >Google Maps Page</a><br></br>
+                    //   <a href= { lm.details.wiki_page_link } >Wiki Page</a>
+                    // </span>
                   )
                 })
               }
