@@ -14,15 +14,19 @@ Rails.application.routes.draw do
   end
 
   resources :users, only: [:show, :edit, :update]
+  
+  get 'trip/index'
+  resources :trip, only: [:show, :edit, :update]
 
   # get 'hello_world', to: 'hello_world#index'
   #get 'chat/new'
   #get "/chat" => redirect("http://localhost:8080")
-  get 'trip/index'
 
   get 'trip/create'
 
   get 'trip/new'
+  post 'trip' => 'trip#create'
+  put 'trip' => 'trip#update'
 
   get 'trip/dashboard' => 'chat#dashboard'
 

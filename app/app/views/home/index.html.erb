@@ -1,14 +1,39 @@
 <h1>Home#index</h1>
 <p>Find me in app/views/home/index.html.erb</p>
-
+<hr />
 <% if user_signed_in? %>
 Current User (<%= current_user.id %>): <%= current_user.first_name %> <%= current_user.last_name %> from <%= current_user.country %>
   <li>
-    <%= link_to('Profile (json)', controller: "users", action: "show", id: @current_user) %>        
+    <%= link_to('Profile (json)', controller: "users", action: "show", id: current_user) %>        
   </li>
   <li>
-    <%= link_to('Edit', controller: "users", action: "edit", id: @current_user) %>        
+    <%= link_to('Edit', controller: "users", action: "edit", id: current_user) %>        
   </li>
+  <hr />
+<table class="table table-responsive table-hover table-sm">
+  <thead>
+    <tr>
+      <th>Trip#</th>
+      <th>Destination</th>
+      <th>Description</th>
+      <th>Start Date</th>
+      <th>End Date</th>
+    </tr>
+  </thead>
+  <tbody>
+  <% @trips.all.each do |trip| %>
+    <tr>
+      <th scope="row"><%= trip.id %></th>
+      <td><%= trip.description %></td>
+      <td><%= trip.destination %></td>
+      <td><%= trip.start_date.in_time_zone("Eastern Time (US & Canada)") %></td>
+      <td><%= trip.end_date.in_time_zone("Eastern Time (US & Canada)") %></td>
+    </tr>
+  <% end %>
+
+  </tbody>
+</table>
+  <hr />
   <li>
     <%= link_to('Logout', destroy_user_session_path, method: :delete) %>        
   </li>
