@@ -21,6 +21,7 @@ io.on('connection', function(socket){
   
   socket.on('chat message', function(tripID, username,  msg){
     io.emit('chat message', tripID, username, msg);
+    if(msg.includes('watson')){
     nlu.analyze({
       'html': msg, // Buffer or String
       'features': {
@@ -32,15 +33,22 @@ io.on('connection', function(socket){
            console.log('error:', err);
          else
           strGoogleQuery = '';
+          // filterResultsArray = ['hey watson'];
+          // queryArray = [];
           response.keywords.forEach((item) =>{
             strGoogleQuery += item['text'] + ' ';
-          }) 
+            //queryArray.push(item['text']);
+          })
+        //console.log(queryArray);
+        //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
           //io.emit('chat message',strGoogleQuery);
-          searchFor(tripID, username,strGoogleQuery);
+           searchFor(tripID, username,strGoogleQuery);
            //searchFor();
            //console.log(JSON.stringify(response, null, 2));
      });
+    }
   });
+
 });
 
 http.listen(port, function(){
@@ -71,6 +79,26 @@ http.listen(port, function(){
  * returns {object}        See response data structure at
  *                         https://developers.google.com/custom-search/json-api/v1/reference/cse/list#response
  */
+// compareArr = (tripID,username,queryArray,filterResultsArray,strGoogleQuery) =>{
+  
+//   if(queryArray.length > filterResultsArray.length){
+//     queryArray.forEach((e) =>{
+//       if(filterResultsArray.indexOf(e) !== -1){
+//         searchFor(tripID,username,strGoogleQuery)
+//       }
+//     })
+//   }else{
+//     filterResultsArray.forEach((e) => {
+//       if(queryArray.indexOf(e) !== -1){
+//         searchFor(tripID,username,strGoogleQuery)
+//       }
+//     })
+
+//   }
+// }
+
+
+
 searchFor = (tripID, username,query) => {
   
     // Base URL to access customsearch
