@@ -35,15 +35,14 @@ io.on('connection', function(socket){
           strGoogleQuery = '';
           // filterResultsArray = ['hey watson'];
           // queryArray = [];
-          response.keywords.forEach((item) =>{
+          
+          response.keywords.forEach((item) =>{ 
             if(!(item['text'].includes('watson'))){
-              //strGoogleQuery += item['text'] + ' ';
+              strGoogleQuery += item['text'] + ' ';
               //queryArray.push(item['text']);
             }
           })
-          console.log(strGoogleQuery);
-        //console.log(queryArray);
-        //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
+          //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
           //io.emit('chat message',strGoogleQuery);
            searchFor(tripID, username,strGoogleQuery);
            //searchFor();
