@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  attr_reader :current_user
+  #attr_reader :current_user
 
   protected
   def authenticate_request!

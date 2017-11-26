@@ -1,11 +1,8 @@
 Rails.application.routes.draw do
-  
   devise_for :users, controllers: {
     registrations: 'users/registrations'
   }
   
-  
-
   devise_scope :user do
     authenticated :user do
       root 'trip#index'
@@ -15,6 +12,8 @@ Rails.application.routes.draw do
       root 'devise/sessions#new'
     end
   end
+
+  resources :users, only: [:show, :edit, :update]
 
   # get 'hello_world', to: 'hello_world#index'
   #get 'chat/new'
@@ -30,14 +29,6 @@ Rails.application.routes.draw do
   get '/trip/chat' => 'chat#new'
   get '/trip/chat/:tripid' => 'chat#trip'
   
-  get 'user/index'
-
-  get 'user/new'
-
-  get 'user/create'
-
-  get 'user/update'
-
   get 'home/index'
 
   post 'auth_user' => 'authentication#authenticate_user'

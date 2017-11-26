@@ -145,10 +145,6 @@ var worldDataProvider = {
   function handleCityClick(event, city) {
 
       let usersdiv = document.getElementById("usersdiv");
-      let usernameinput = document.getElementById("name");
-
-      usernameinput.value = city;
-      reactTriggerChange(usernameinput);
 
       if (usersdiv.style.display === "none") {
           usersdiv.style.display = "block";
@@ -156,14 +152,10 @@ var worldDataProvider = {
       //     usersdiv.style.display = "none";
       }
 
-      let citydiv = document.getElementById("citydiv");
       let cityname = document.getElementById("cityname");
       cityname.value = city
       reactTriggerChange(cityname);
 
-      if (citydiv.style.display === "none") {
-        citydiv.style.display = "block";
-      }
   }
   
   function handleMapObjectClick( event ) {
@@ -179,31 +171,6 @@ var worldDataProvider = {
   }
 
   function showChat(){
-      return `<a href=chat>Chat with other travelers!</a>
+      return `<a href=trip/chat/1?name=Unknown%20User>Chat with other travelers!</a>
       `;
   }
-
-// This map is for Canada (allows selecting by province).
-var mapCanada;
-  
-AmCharts.ready(function() {
-  mapCanada = new AmCharts.AmMap();
-  
-  mapCanada.balloon.color = "#000000";
-  
-    var dataProvider = {
-        mapVar: AmCharts.maps.canadaLow,
-        getAreasFromMap:true
-    };
-
-    mapCanada.dataProvider = dataProvider;
-
-    mapCanada.areasSettings = {
-        autoZoom: true,
-        selectedColor: "#CC0000"
-    };
-
-    mapCanada.smallMap = new AmCharts.SmallMap();
-
-    mapCanada.write("mapdiv");
-});

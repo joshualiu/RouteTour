@@ -24,6 +24,20 @@ class UsersController < ApplicationController
     end
   end
 
+  def update
+    #user = User.find_by(email: params[:email].to_s.downcase)
+    #@user = current_user
+  end
+
+  def edit
+    @user = User.find_by(id: params[:id])
+  end
+
+  def show
+    user = User.find_by(id: params[:id])
+    render json: {status: user}
+  end
+
   protected
   
   def configure_permitted_parameters

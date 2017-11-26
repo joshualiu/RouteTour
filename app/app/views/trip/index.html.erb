@@ -11,7 +11,7 @@
 <script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
 <script src="https://unpkg.com/react-trigger-change/dist/react-trigger-change.js"></script>
 
-
+<hr />
 <%= csrf_meta_tags %>
 <%= javascript_pack_tag 'countrymap-userlist-bundle' %>
 <%= javascript_pack_tag 'countrymap' %>
@@ -24,10 +24,3 @@
 
 <hr />
 </div>
-<div id="citydiv" style="display:none">
-<%= react_component("HelloWorld", props: @hello_world_props, prerender: false) %>
-
-</div>
-
-<br /><br />
-<div id="mapdiv" style="width: 800px; background-color:#EEEEEE; height: 500px;"></div>
