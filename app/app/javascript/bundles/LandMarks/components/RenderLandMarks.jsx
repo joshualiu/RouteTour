@@ -15,19 +15,38 @@ class RenderLandMarks extends Component {
               {
                 landmarks.map((lm, k) => {
                   return (
-                    <span key={k}>
-                      <h5>{ lm.title }</h5>
-                      <img
-                        alt="Profile"
-                        className="Profile-img"
-                        src={ lm.main_image}
-                      />
-                      <div>Description</div>
-                      <h5>{ lm.details.short_description }</h5>
-                      <h5>{ ['longitude: ', lm.location.longitude, ' latitude: ',lm.location.latitude] }</h5>
-                      <a href= { lm.location.google_maps_link } >Google Maps Page</a><br></br>
-                      <a href= { lm.details.wiki_page_link } >Wiki Page</a>
+
+                      <span key={k}>
+                          <div>
+                              {/* <ul className="grid"> */}
+                                    <li>
+                                      <figure>
+                                        <img src={ lm.main_image} alt="Profile"/>
+                                          <figcaption>
+                                            <h3>{ lm.title }</h3>
+                                            <span>{ lm.details.short_description }</span>
+                                            <a href= { lm.location.google_maps_link } >Google Map</a><br></br>
+                                            <a href= { lm.details.wiki_page_link } >Wiki</a>
+                                          </figcaption>
+                                      </figure>
+                                    </li>
+                                  {/* </ul> */}
+                      </div>
                     </span>
+
+                    // <span key={k}>
+                    //   <h5>{ lm.title }</h5>
+                    //   <img
+                    //     alt="Profile"
+                    //     className="Profile-img"
+                    //     src={ lm.main_image}
+                    //   />
+                    //   <div>Description</div>
+                    //   <h5>{ lm.details.short_description }</h5>
+                    //   <h5>{ ['longitude: ', lm.location.longitude, ' latitude: ',lm.location.latitude] }</h5>
+                    //   <a href= { lm.location.google_maps_link } >Google Maps Page</a><br></br>
+                    //   <a href= { lm.details.wiki_page_link } >Wiki Page</a>
+                    // </span>
                   )
                 })
               }
