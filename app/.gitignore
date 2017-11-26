@@ -23,4 +23,6 @@
 /public/packs-test
 /node_modules
 
-settings.json
+settings.json/public/packs
+/public/packs-test
+/node_modules
