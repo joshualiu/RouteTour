@@ -34,7 +34,7 @@ class RenderRestaurants extends Component {
       if(this.props.data){
         const results = this.props.data.slice(0,5)
         return (
-          <div><h5>Restaurants</h5>
+          <div><h5>Hotels</h5>
           
           <div style={styles.root}>
                   <MuiThemeProvider>
@@ -58,22 +58,8 @@ class RenderRestaurants extends Component {
           </GridList>
           </MuiThemeProvider>
 
+              </div>
            </div>
-           </div>
-
-          //   {results.map((elm, k) => {
-          //     return (
-          //       <span key={k}>
-          //         <List 
-          //           img={elm.photos[0].getUrl(({'maxWidth': 100, 'maxHeight': 100}))}
-          //           name={elm.name}
-          //           rating={elm.rating}
-          //           link={Parser(elm.photos[0].html_attributions[0])}
-          //           />
-          //         </span>
-          //     )
-          //   })}
-          // </div>
         )
 
       }
@@ -84,35 +70,6 @@ class RenderRestaurants extends Component {
       }
       
     }   
-
-    // render(){
-    //   if(this.props.data){
-    //     const results = this.props.data.slice(0,5)
-    //     return (
-    //       <div>
-    //         {results.map((elm, k) => {
-    //           return (
-    //             <span key={k}>
-    //               <List 
-    //                 img={elm.photos[0].getUrl(({'maxWidth': 100, 'maxHeight': 100}))}
-    //                 name={elm.name}
-    //                 rating={elm.rating}
-    //                 link={Parser(elm.photos[0].html_attributions[0])}
-    //                 />
-    //               </span>
-    //           )
-    //         })}
-    //       </div>
-    //     )
-
-    //   }
-    //   else {
-    //     return (
-    //       <div>Empty</div>
-    //     )
-    //   }
-      
-    // }   
 }
 
 export default RenderRestaurants;

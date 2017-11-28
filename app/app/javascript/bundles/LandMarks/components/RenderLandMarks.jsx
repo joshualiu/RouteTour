@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Media } from 'react-bootstrap';
 
 class RenderLandMarks extends Component {
 
@@ -9,30 +10,44 @@ class RenderLandMarks extends Component {
       let landmarks = this.props.data.points_of_interest;
       return (
         <div>
-          <div>Current city:</div>
-          <h3>{ cityname }</h3>
-            <div> Landmarks</div>
+          <h5>{ cityname } LandMarks</h5>
               {
                 landmarks.map((lm, k) => {
-                  return (
+                  if(k < 5) {
 
-                      <span key={k}>
-                          <div>
-                              {/* <ul className="grid"> */}
-                                    <li>
-                                      <figure>
-                                        <img src={ lm.main_image} alt="Profile"/>
-                                          <figcaption>
-                                            <h3>{ lm.title }</h3>
-                                            <span>{ lm.details.short_description }</span>
-                                            <a href= { lm.location.google_maps_link } >Google Map</a><br></br>
-                                            <a href= { lm.details.wiki_page_link } >Wiki</a>
-                                          </figcaption>
-                                      </figure>
-                                    </li>
-                                  {/* </ul> */}
-                      </div>
-                    </span>
+                  
+                  return (
+                    // <span key={k}>
+                      <Media key={k}>
+                          <Media.Left>
+                            <img width={64} height={64} src={ lm.main_image }  alt="Image"/>
+                          </Media.Left>
+                          <Media.Body>
+                            <Media.Heading>{ lm.title }</Media.Heading>
+                            <p>{ lm.details.short_description }</p>
+                            <p><a href= { lm.location.google_maps_link } >Google Map</a>&nbsp;&nbsp;<a href= { lm.details.wiki_page_link } >Wiki</a></p>
+                          </Media.Body>
+                        </Media>
+
+                    // </span>
+
+                    //   <span key={k}>
+                    //       <div>
+                    //           {/* <ul className="grid"> */}
+                    //                 <li>
+                    //                   <figure>
+                    //                     <img src={ lm.main_image} alt="Profile"/>
+                    //                       <figcaption>
+                    //                         <h3>{ lm.title }</h3>
+                    //                         <span>{ lm.details.short_description }</span>
+                    //                         <a href= { lm.location.google_maps_link } >Google Map</a><br></br>
+                    //                         <a href= { lm.details.wiki_page_link } >Wiki</a>
+                    //                       </figcaption>
+                    //                   </figure>
+                    //                 </li>
+                    //               {/* </ul> */}
+                    //   </div>
+                    // </span>
 
                     // <span key={k}>
                     //   <h5>{ lm.title }</h5>
@@ -48,6 +63,10 @@ class RenderLandMarks extends Component {
                     //   <a href= { lm.details.wiki_page_link } >Wiki Page</a>
                     // </span>
                   )
+                }
+                else {
+                  return (<div key={k}></div>)
+                }
                 })
               }
           </div>
@@ -55,7 +74,7 @@ class RenderLandMarks extends Component {
     }
     else {
       return (
-        <div>No city results</div>
+        <div></div>
       )
     }
   }

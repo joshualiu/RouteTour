@@ -5,6 +5,7 @@ import RenderLandMarks from './RenderLandMarks';
 import Map from './Map';
 import Flights from './Flights';
 import RenderRestaurants from './RenderRestaurants';
+import RenderHotels from './RenderHotels';
 import Weather from './Weather';
 
 
@@ -317,17 +318,18 @@ const Flightdata = {
   constructor(props){
     super(props);
     this.state = {
-      query: '',
+      query: null,
       cityjson: null, //hard-coded set cityjson data
-      origin: 'BOS',
-      destination: 'YYZ',
-      departure_date: '2017-12-25',
-      return_date: '2017-12-28',
+      origin: null,
+      destination: null,
+      departure_date: null,
+      return_date: null,
       flightjson: null,
       restaurantData: null,
-      googleQuery: '',
+      googleQuery: null,
       hotelData: null,
       weatherQuery: null,
+      click: false,
     }
   }
 
@@ -337,39 +339,39 @@ const Flightdata = {
     let destination = this.state.destination
     let departure_date = this.state.departure_date
     let return_date = this.state.return_date
-    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
+    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=WxT65Q9xIzU5B32Q0kYjDk8zCdMezqVd&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
     console.log("featch- get request URL:", flight_url)
-    // fetch(flight_url, {
-    //   method: 'GET'
-    // })
-    // .then(response => response.json())
-    // .then(json => {
-    //   const flightdata = json;
-    //   console.log("flightdata", flightdata);
-    //   this.setState({flightjson: flightdata});
-    // });
-    this.setState({flightjson: Flightdata})
+    fetch(flight_url, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      const flightdata = json;
+      console.log("flightdata", flightdata);
+      this.setState({flightjson: flightdata});
+    });
+    // this.setState({flightjson: Flightdata})
     
 
   }
 
   search() {
     let city = this.state.query    
-    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=qCogGsckyYZ0U29gZCurP7ty5JMl1yUg&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
+    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=WxT65Q9xIzU5B32Q0kYjDk8zCdMezqVd&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
     console.log("featch- get request URL:", base_url)
     console.log("hard-coded NY data for now", Todata)
-    // fetch(base_url, {
-    //   method: 'GET'
-    // })
-    // .then(response => response.json())
-    // .then(json => {
-    //   const citydata = json;
-    //   console.log("citydata", citydata);
-    //   this.setState({cityjson: citydata});
-    // });
+    fetch(base_url, {
+      method: 'GET'
+    })
+    .then(response => response.json())
+    .then(json => {
+      const citydata = json;
+      console.log("citydata", citydata);
+      this.setState({cityjson: citydata});
+    });
 
     // hard-coded for now
-    this.setState({cityjson: Todata})
+    // this.setState({cityjson: Todata})
   }
 
 
@@ -400,6 +402,16 @@ const Flightdata = {
     });
   }
 
+ componentWillMount() {
+   this.setState({
+      googleQuery: this.props.city,
+      origin: this.props.origin,
+      destination: this.props.destination,
+      departure_date: this.props.departure_date,
+      return_date: this.props.return_date,
+      query: this.props.city
+    })
+ }
 
 
   componentDidMount () {
@@ -409,41 +421,43 @@ const Flightdata = {
 
   google_search(){
     this.geocodeAddress(this.state.googleQuery, "restaurant", "restaurant", "restaurantData");
-    this.geocodeAddress(this.state.googleQuery, "lodging", "best hotel", "hotelData");
+    this.geocodeAddress(this.state.googleQuery, "lodging", "hotel", "hotelData");
 
   }
 
 
+    
   render() {
     return (
       <div className="LandMarks">
-      <h1>React component Dashboard-landmarks</h1>
-      <ButtonToolbar>
+        <div className="App-title"></div>
+        { this.state.click ? <div></div> : <img 
+          src={"https://cdn.worldvectorlogo.com/logos/react-router.svg"} width={100} height={100}
+            onClick={ () => {
+              this.setState({click: true})
+              console.log("wow")
+              console.log("states", this.state)
+              this.search()
+              this.google_search()
+              this.search_flights()
+            }
+          }/>}
+        
 
-        <Button>Default</Button>
-      </ButtonToolbar>
-
-        <div className="App-title"><h1>LandMarks Search</h1></div>
-        <FormGroup>
+        {/* <FormGroup>
           <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="Search for a city"
-              value={this.state.query}
-              onChange={ e => {this.setState({ query: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search()
-                }
-              }}
-            />
-            <InputGroup.Addon onClick={ () => this.search() }>
+            <InputGroup.Addon onClick={ () => {
+              this.search()
+              console.log("states", this.state)
+              this.google_search()
+              this.search_flights()
+              } }>
               <Glyphicon glyph="search">
               </Glyphicon>
             </InputGroup.Addon>
           </InputGroup>
 
-        </FormGroup>
+        </FormGroup> */}
 
               <div className="return_landmarks">
                 <RenderLandMarks 
@@ -451,156 +465,32 @@ const Flightdata = {
                   />
               </div>
 
-    <div className="Flights">
-        <div className="App-title"><h1>Flights Search</h1></div>
-        <FormGroup>
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="origin"
-              value={this.state.origin}
-              onChange={ e => {this.setState({ origin: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search();
-                  
-                }
-              }}
-            />
-            <InputGroup.Addon onClick={ () => this.search_flights() }>
-              <Glyphicon glyph="search">
-              </Glyphicon>
-            </InputGroup.Addon>
-          </InputGroup>
 
-        </FormGroup>
-
-
-        <FormGroup>
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="destination"
-              value={this.state.destination}
-              onChange={ e => {this.setState({ destination: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search_flights()
-                }
-              }}
-            />
-            <InputGroup.Addon onClick={ () => this.search_flights() }>
-              <Glyphicon glyph="search">
-              </Glyphicon>
-            </InputGroup.Addon>
-          </InputGroup>
-
-        </FormGroup>
-
-
-      <FormGroup>
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="departure_date 2017-12-25"
-              value={this.state.departure_date}
-              onChange={ e => {this.setState({ departure_date: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search_flights()
-                }
-              }}
-            />
-            <InputGroup.Addon onClick={ () => this.search_flights() }>
-              <Glyphicon glyph="search">
-              </Glyphicon>
-            </InputGroup.Addon>
-          </InputGroup>
-
-        </FormGroup>
-
-
-        <FormGroup>
-          <InputGroup>
-            <FormControl
-              type="text"
-              placeholder="return_date 2017-12-28"
-              value={this.state.return_date}
-              onChange={ e => {this.setState({ return_date: e.target.value })} }
-              onKeyPress={ e=> {
-                if (e.key === 'Enter') {
-                  this.search_flights();
-                  
-                }
-              }}
-            />
-            <InputGroup.Addon onClick={ () => this.search_flights() }>
-              <Glyphicon glyph="search">
-              </Glyphicon>
-            </InputGroup.Addon>
-          </InputGroup>
-
-        </FormGroup>
-    </div>
-
-      <div className="return_flights">
-        <div>Flight data -- only show the lowest price</div>
-            <Flights
-              data={ this.state.flightjson } 
-              />  
-        </div>
-
-
-        <div className="Google_Search">
-          <div className="Search-title"><h2>Google Maps Search</h2></div>
-          <FormGroup>
-            <InputGroup>
-              <FormControl
-                type="text"
-                placeholder="Toronto"
-                value={this.state.googleQuery}
-                onChange={ e => {this.setState({ googleQuery: e.target.value })} }
-                onKeyPress={ e=> {
-                  if (e.key === 'Enter') {
-                    this.google_search()
-                    this.setState({weatherQuery: this.state.googleQuery})
-                  }
-                }}
-              />
-              <InputGroup.Addon onClick={ () => this.google_search() }>
-                <Glyphicon glyph="search">
-                </Glyphicon>
-              </InputGroup.Addon>
-            </InputGroup>
-
-          </FormGroup>
-      </div>
-
-
-
-          <div><h3>Restaurants Results</h3></div>
-            <div>
-              <RenderRestaurants data={this.state.restaurantData} />
+          <div className="return_flights">
+                <Flights
+                  data={ this.state.flightjson } 
+                  />  
             </div>
 
-            <div><h3>Hotels Results</h3></div>
-            <div>
-              <RenderRestaurants data={this.state.hotelData} />
-            </div>
+                <div>
+                  <RenderRestaurants data={this.state.restaurantData} />
+                </div>
+                <div>
+                  <RenderHotels data={this.state.hotelData} />
+                </div>
+
+              <div>
+                {/* <h5>Weather</h5> */}
+                  {/* <Weather cityname= {this.state.weatherQuery}/> */}
+
+              </div>
 
 
 
-
-        <div className="return_data">
+        {/* <div className="return_data"> */}
            {/* <div>{ JSON.stringify(this.state.cityjson) }</div>  */}
-            <div>
-              <h2>Maps</h2>
-              <Map />
-              <h2>Weather</h2>
-              <Weather cityname= {this.state.weatherQuery}/>
-             </div>
-        </div>
-      </div>
+        {/* </div> */}
+            </div>
 
     )
   }

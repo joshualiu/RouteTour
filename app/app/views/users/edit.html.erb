@@ -1,64 +1,128 @@
+<div class="content breadcrumbs header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="">
+                    <li><a class="divider"><i class="fa fa-chevron-left"></i></a></li>
+                    <li><a href="/">Back to homepage</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="/trip/index">Browse All Trips</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<div id="slider-home" class="registration fill">  
+    <div id="main-text" class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+        <div class="text-holder">
+            <h1>Edit User</h1>
+        </div>
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 form-wrapper header">
+            <%# <form action="/sign/register" method="post" id="frm-registerForm"> %>
+                <div class="form-holder step-one active">
+                    <div class="form-group"> 
+
+                              <%# <div id="originalform"> %>
+                        <%= form_for(:user, url: '/users', html: { method: :put }) do |f| %>
+
+                          <div class="field">
+                            <%= f.label :email %>
+                            <%= f.email_field :email, autofocus: true %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :first_name %>
+                            <%= f.text_field :first_name %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :last_name %>
+                            <%= f.text_field :last_name %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :gender %>
+                            <%= f.text_field :gender %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :country %>
+                            <%= f.text_field :country %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :user_img %>
+                            <%= f.text_field :user_img %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :description %>
+                            <%= f.text_field :description %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :password %> <i>(leave blank if you don't want to change it)</i>
+                            <%= f.password_field :password, autocomplete: "off" %>
+                            <% if @minimum_password_length %>
+                              <br />
+                              <em><%= @minimum_password_length %> characters minimum</em>
+                            <% end %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :password_confirmation %>
+                            <%= f.password_field :password_confirmation, autocomplete: "off" %>
+                          </div>
+
+                          <div class="field">
+                            <%= f.label :current_password %> 
+                            <%= f.password_field :current_password, autocomplete: "off" %>
+                          </div>
+
+                          <div class="actions">
+                            <%= f.submit "Update" %>
+                          </div>
+                        <% end %>
+
+                    </div>
+                </div>
+
+        </div>
+    </div>
+    <div id="main-slide" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+            <%# <li id="slide-to-1" data-target="#main-slide" data-slide-to="1"></li> %>
+        </ol>
+        <div class="carousel-inner">
+            <%# <div class="item active" data-slide="/assets/images/registration01.jpg"></div>
+            <div class="item" data-slide="/assets/images/registration02.jpg"></div> %>
+          <div class="item active">
+            <img className="full-screen" src="/toronto4.jpg" alt="Los Angeles" style="width:100%;height:2000px;filter:blur(1px);opacity:0.7">
+          </div>
+              
+
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <h2>Edit User</h2>
-
-<%= form_for(:user, url: '/users', html: { method: :put }) do |f| %>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "off" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :first_name %><br />
-    <%= f.text_field :first_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :last_name %><br />
-    <%= f.text_field :last_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :gender %><br />
-    <%= f.text_field :gender %>
-  </div>
-
-  <div class="field">
-    <%= f.label :country %><br />
-    <%= f.text_field :country %>
-  </div>
-
-  <div class="field">
-    <%= f.label :user_img %><br />
-    <%= f.text_field :user_img %>
-  </div>
-
-  <div class="field">
-    <%= f.label :description %><br />
-    <%= f.text_field :description %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update" %>
-  </div>
-<% end %>
 
 <%= link_to "Back", :back %>

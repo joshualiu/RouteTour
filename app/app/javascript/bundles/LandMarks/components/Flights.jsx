@@ -11,6 +11,7 @@ class Flights extends Component {
       let fare = this.props.data.results[0].fare.total_price
       return(
         <div>
+          <div>Lowest price </div>
           <div>Outbound: </div>
           <div>From { outbound.origin.airport } to { outbound.destination.airport }:</div>
           <div>Departs at: { outbound.departs_at } Arrives at: { outbound.arrives_at}</div>
@@ -30,7 +31,7 @@ class Flights extends Component {
     }
     else {
       return (
-        <div>No Flights data</div>
+        <div></div>
       )
     }
  
