@@ -16,6 +16,8 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :edit, :update]
   
   get 'trip/index'
+  get 'trip/new'
+  get 'trip/dashboard' => 'chat#dashboard'
   resources :trip, only: [:show, :edit, :update]
 
   # get 'hello_world', to: 'hello_world#index'
@@ -24,11 +26,9 @@ Rails.application.routes.draw do
 
   get 'trip/create'
 
-  get 'trip/new'
   post 'trip' => 'trip#create'
   put 'trip' => 'trip#update'
 
-  get 'trip/dashboard' => 'chat#dashboard'
 
   get '/trip/chat' => 'chat#new'
   get '/trip/chat/:tripid' => 'chat#trip'
