@@ -33,18 +33,25 @@ io.on('connection', function(socket){
           strGoogleQuery = '';
           // filterResultsArray = ['hey watson'];
           // queryArray = [];
+          if(response){
+            console.log(response)
+            response.keywords.forEach((item) =>{ 
+              if(!(item['text'].includes('watson'))){
+                strGoogleQuery += item['text'] + ' ';
+                //queryArray.push(item['text']);
+              }
+            })
+            //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
+            //io.emit('chat message',strGoogleQuery);
+             searchFor(tripID, username,strGoogleQuery);
+             //searchFor();
+             //console.log(JSON.stringify(response, null, 2));
+          }else{
+            
+            io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+            return;
+          }
           
-          response.keywords.forEach((item) =>{ 
-            if(!(item['text'].includes('watson'))){
-              strGoogleQuery += item['text'] + ' ';
-              //queryArray.push(item['text']);
-            }
-          })
-          //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
-          //io.emit('chat message',strGoogleQuery);
-           searchFor(tripID, username,strGoogleQuery);
-           //searchFor();
-           //console.log(JSON.stringify(response, null, 2));
      });
     }
   });
@@ -120,6 +127,8 @@ searchFor = (tripID, username,query) => {
     request(url,(error,response) => {
       if(JSON.parse(response.body).items[0].link){
         io.emit('suggestion',tripID, username,JSON.parse(response.body).items[0].link);
+      } else {
+        io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
       }
     })
   }

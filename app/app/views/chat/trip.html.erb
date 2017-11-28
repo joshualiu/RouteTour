@@ -53,9 +53,9 @@
         });
         socket.on('suggestion',function(tripid, username,msg){
           //console.log(msg);
-          htmlstr = `<a href=${msg}>Suggestions</a>`; 
+          htmlstr = `<a href=${msg}target="_blank">'${msg}'</a>`; 
           console.log(htmlstr);
-          $('#messages').append($('<li>').text(decodeURIComponent(username) + ':  '+ $.parseHTML(htmlstr)));
+          $('#messages').append($('<li>').html(decodeURIComponent(username) + ':  '+ htmlstr));
           window.scrollTo(0, document.body.scrollHeight);
         });
       });
