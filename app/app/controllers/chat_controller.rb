@@ -1,5 +1,8 @@
 class ChatController < TripController
   def new
+    @chat_messages_props = { 
+    }
+
   end
 
   def trip

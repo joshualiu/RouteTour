@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import WeatherInfo from './weatherinfo.jsx'
-//import $ from 'jquery';
+import $ from 'jquery';
 import Parser from 'html-react-parser';
 
 class Map extends React.Component{

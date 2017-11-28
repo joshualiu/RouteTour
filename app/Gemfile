@@ -62,4 +62,6 @@ gem 'mini_racer', platforms: :ruby
 # Use devise and JWT (tokens) for login/authentication
 gem 'devise'
 gem 'jwt'
+
+# Use Faker for generating seed data.
 gem 'faker'

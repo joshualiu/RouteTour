@@ -11,8 +11,6 @@ var nlu = new NaturalLanguageUnderstandingV1({
   version_date: NaturalLanguageUnderstandingV1.VERSION_DATE_2017_02_27
 });
 
-
-
 app.get('/', function(req, res){
   res.sendFile(__dirname + '/tripchat.html');
 });
@@ -56,7 +54,6 @@ io.on('connection', function(socket){
 http.listen(port, function(){
   console.log('listening on *:' + port);
 });
-
 
 // {
 //   "natural-language-understanding": [

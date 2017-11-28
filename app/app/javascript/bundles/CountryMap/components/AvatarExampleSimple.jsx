@@ -17,12 +17,24 @@ import {
 
 const style = {margin: 5};
 
+import {cyan500} from 'material-ui/styles/colors';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+const muiTheme = getMuiTheme({
+  palette: {
+    textColor: cyan500,
+  },
+  appBar: {
+    height: 50,
+  },
+});
+
+
 /**
  * Examples of `Avatar` using an image, [Font Icon](/#/components/font-icon), [SVG Icon](/#/components/svg-icon)
  * and "Letter" (string), with and without custom colors at the default size (`40dp`) and an alternate size (`30dp`).
  */
 const AvatarExampleSimple = () => (
-<MuiThemeProvider>
+<MuiThemeProvider muiTheme={muiTheme}>
   <List>
     <ListItem
       disabled={true}
