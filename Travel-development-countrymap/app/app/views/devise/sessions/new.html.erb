@@ -1,0 +1,71 @@
+<div class="content breadcrumbs header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="">
+                    <li><a class="divider"><i class="fa fa-chevron-left"></i></a></li>
+                    <li><a href="/">Back to homepage</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<div id="slider-home" class="registration fill">  
+    <div id="main-text" class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+        <div class="text-holder">
+            <h1>Log In</h1>
+        </div>
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 form-wrapper header">
+            <%# <form action="/sign/register" method="post" id="frm-registerForm"> %>
+                <div class="form-holder step-one active">
+                  <div class="form-group">             
+                        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+                          <div class="field">
+                            <% f.label :email %>
+                            <%= f.email_field :email, autofocus: true, placeholder: "Email Address" %>
+                          </div>
+
+
+                          <div class="field">
+                            <% f.label :password %>
+                              <%= f.password_field :password, autocomplete: "off", placeholder:"Password" %>
+                            
+                          </div>
+
+                          <div class="action">
+                            <%= f.submit "Log in"%>
+                          </div>
+
+                          <%end%>
+              <%# <%= render "users/shared/links" %>
+                        <%# <input type="text" name="email" placeholder="Email Address" class="form-control" id="frm-registerForm-email" required data-nette-rules='[{"op":":filled","msg":"Email is required"},{"op":":email","msg":"Set a valid email"}]'> %>
+                        <%# <input type="password" name="password" placeholder="Password" class="form-control" id="frm-registerForm-password" required data-nette-rules='[{"op":":filled","msg":"Password is required"},{"op":":minLength","msg":"Password has to be at least 5 characters long.","arg":5}]'> %>
+                        <%# <a id="continue" href="#" class="btn btn-yellow register-next">Log in</a> %>
+                    </div>
+                </div>
+            <%# <input type="hidden" name="do" value="registerForm-submit"></form> %>
+
+        </div>
+        <div class="col-sm-4 col-sm-offset-4 text-footer active">
+            <p>Don't have an account? <a href="/users/sign_up">Sign up</a></p>            
+            <p>Forgot you password? <a href="/users/password/new">Find my password</a></p>            
+        </div>          
+    </div>
+    <div id="main-slide" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+            <%# <li id="slide-to-1" data-target="#main-slide" data-slide-to="1"></li> %>
+        </ol>
+        <div class="carousel-inner">
+            <%# <div class="item active" data-slide="/assets/images/registration01.jpg"></div>
+            <div class="item" data-slide="/assets/images/registration02.jpg"></div> %>
+          <div class="item active">
+            <img className="full-screen" src="/toronto4.jpg" alt="Los Angeles" style="width:100%;height:auto;filter:blur(1px);opacity:0.7">
+          </div>
+              
+        </div>
+    </div>
+</div>
+

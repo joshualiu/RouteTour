@@ -1,5 +1,11 @@
 <h5>dashboard from chat/dashboar.html.erb</h5>
 <%#= react_component("HelloWorld", props: @hello_world_props, prerender: false) %>
   <div id='whatever' style="float:right; width: 66.6%">
-    <%= react_component("LandMarks", props: @hello_world_props ) %>
+    <%= react_component("LandMarks", props:{ 
+      city: "Toronto",
+      origin: "BOS",
+      destination: "YYZ",
+      departure_date: "2017-12-25",
+      return_date: "2017-12-28",
+   }, prerender:false) %>
   </div>

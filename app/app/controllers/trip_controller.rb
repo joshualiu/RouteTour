@@ -2,8 +2,8 @@ class TripController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    # @hello_world_props = { name: "Stranger" }
-    @userlistprops = {name: "T.O."}
+    @userlistprops = User.all
+    @trip = Trip.all
 
     # Get the COUNT(*) of Users GROUPED BY City.
     @users_per_city = User.group(:country).count

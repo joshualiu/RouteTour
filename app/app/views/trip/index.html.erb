@@ -1,17 +1,4 @@
-<h1>Trip#index</h1>
-<p>Find me in app/views/trip/index.html.erb???</p>
 
-<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/continentsLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
-
-<script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
-<script src="https://unpkg.com/react-trigger-change/dist/react-trigger-change.js"></script>
-
-<hr />
 <script type="text/javascript">
   // Users per country.
 	let cAmsterdam = "<%= @cAmsterdam %>";
@@ -44,15 +31,99 @@
 </script>
 
 <%= csrf_meta_tags %>
-<%= javascript_pack_tag 'countrymap-userlist-bundle' %>
-<%= javascript_pack_tag 'countrymap' %>
 
-<div id="chartdiv"></div>
-<hr />
-<div id="usersdiv" style="display:none">
-<h3>Other Users</h3>
-<%= react_component("UserList", props: @userlistprops, prerender: false) %>
-<%# <%= react_component("AvatarExampleSimple", prerender: false) %>
+<header>
+    <div class="navbar navbar-default navbar-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <%# <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse"></button> %>
+                <img src="https://cdn.worldvectorlogo.com/logos/react-router.svg" style="height:80px; width:80px;" id="rotatelogo">
+                <div href="/"><strong>RouteTour</strong></div>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-left main-switch">
+                    <li><a href="/trip/new">Creat a New Trip</a></li>
+                    <li><a href="/trip/index">Browse All Trips</a></li>
+                </ul>
 
-<hr />
+                <ul class="nav navbar-nav navbar-right main-switch">
+                    
+                    <% if user_signed_in? %>
+                        <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a><li>
+                    <% else %>
+                        <li><a href="/users/sign_up">Join</a></li>
+                        <li><a href="/users/sign_in">Log In</a></li>
+                    <% end%>
+                </ul>
+                    
+            </div>  
+        </div>
+    </div>
+</header>
+
+
+<div id="snippet--flashMessages"></div>
+
+<div class="content header-banner" data-image="/assets/headers/04.jpg" style="background-image: url(&quot;/london.jpg&quot;); opacity: 0.5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xs-12 text-holder profile edit">
+                <h1 class="header"><%= current_user.first_name %></h1>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="content profile edit">
+
+<div class="container profile-header">
+    <div class="row">
+
+            <div class="col-md-6 col-sm-7 col-xs-12 stand-info">
+                <p><span>Currently in:</span></p>
+                <div class="form-holder">
+                    <div class="form-group currently-fix">
+                        <div class="select-holder advanced">
+                            <label class="hidden" for="current-location"></label>
+                        </div>
+                    </div>
+                    <div class="form-group offset">
+                        <div class="inner-wrapper">
+                            <label class="hidden" for="meet-city"><%= current_user.country %></label>
+                            <input id="meet-city" name="meet-city" class="form-control" placeholder=<%= current_user.country %> value="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="img-holder">
+                    <img id="profile-image" src="https://static.pexels.com/photos/374710/pexels-photo-374710.jpeg" alt="tripper photo">
+            </div>
+           
+
+    </div>
+    <div class="row">
+
+    </div>
+
+</div>
+
+<div class="profile-socials">
+        <a href="javascript:$.notify('Instagram account has not been added.');" class="icon-insta" ></a>
+</div>
+
+ <div  class="container" >
+
+
+            <hr />
+            <%= csrf_meta_tags %>
+            <%= javascript_pack_tag 'countrymap-userlist-bundle' %>
+            <%= javascript_pack_tag 'countrymap' %>
+            <div id="chartdiv"></div>
+            <hr />
+            <div id="usersdiv" style="display:none">
+            <h1>Other Users</h1>
+            <%= react_component("UserList", props: {userToReact: @userlistprops, tripToReact: @trip}, prerender: false) %>
+
+
+            <hr />
 </div>
