@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
-    <%= javascript_pack_tag 'chat-bundle' %>
+    <%# <%= javascript_pack_tag 'chat-bundle' %> 
     <%# <%= react_component("Chat", props: @chat_messages_props, prerender: false) %>
     <script>
       $(function () {
@@ -51,12 +51,18 @@
             cw.scrollTop = 5000//document.body.scrollHeight
           }
         });
-        socket.on('suggestion',function(tripid, username,msg){
-          //console.log(msg);
-          htmlstr = `<a href=${msg}target="_blank">'${msg}'</a>`; 
-          console.log(htmlstr);
-          $('#messages').append($('<li>').html(decodeURIComponent(username) + ':  '+ htmlstr));
-          window.scrollTo(0, document.body.scrollHeight);
+        socket.on('suggestion',function(tripid, username, msg){
+          // Only show messages if they're meant for the trip (tripid).
+          if (tripid === <%= params[:tripid] %>){
+            //console.log(msg);
+            htmlstr = `<a href=${msg}target="_blank">'${msg}'</a>`; 
+            console.log(htmlstr);
+            $('#messages').append($('<li>').html(decodeURIComponent(username) + ':  '+ htmlstr));
+            // window.scrollTo(0, document.body.scrollHeight);
+            // The line below scrolls to the bottom of the chat window.
+            let cw = document.getElementById("chatwindow")
+            cw.scrollTop = 5000//document.body.scrollHeight
+          }
         });
       });
     </script>
@@ -64,7 +70,7 @@
 
     <div>
       <div id='whatever' style="float:right; width: 65%">
-    <%= react_component("LandMarks", props: @hello_world_props, prerender: false) %>
+    <%= react_component("LandMarks", props: @chat_messages_props, prerender: false) %>
   </div>
   </div>
 

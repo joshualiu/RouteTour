@@ -420,9 +420,8 @@ const Flightdata = {
 
 
   google_search(){
-    this.geocodeAddress(this.state.googleQuery, "restaurant", "restaurant", "restaurantData");
+    this.geocodeAddress(this.state.googleQuery, "restaurant", "restaurants", "restaurantData");
     this.geocodeAddress(this.state.googleQuery, "lodging", "hotel", "hotelData");
-
   }
 
 
@@ -430,7 +429,8 @@ const Flightdata = {
   render() {
     return (
       <div className="LandMarks">
-        <div className="App-title"></div>
+        {console.log("passing data",this.props)}
+        {console.log("current state",this.state)}
         { this.state.click ? <div></div> : <img 
           src={"https://cdn.worldvectorlogo.com/logos/react-router.svg"} width={100} height={100}
             onClick={ () => {
@@ -442,6 +442,9 @@ const Flightdata = {
               this.search_flights()
             }
           }/>}
+          {/* {this.search()}
+          {this.google_search()}
+          {this.search_flights()} */}
         
 
         {/* <FormGroup>
