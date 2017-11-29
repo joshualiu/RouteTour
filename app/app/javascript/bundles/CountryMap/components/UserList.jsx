@@ -23,12 +23,14 @@ export default class UserList extends React.Component {
   }
     
 
-  updateCity = (name,userElem) => {
+  updateCity = (name,userElem,tripId) => {
     
     let jsonUserList = {users: []};
     if(userElem.length){
+      let index = 0;
       userElem.forEach((item) =>{
-        jsonUserList.users.push({id: item.id,name: item.first_name,description: item.description,gender: item.gender,country: item.country});
+        jsonUserList.users.push({id: item.id,name: item.first_name,description: item.description,gender: item.gender,country: item.country,trip: tripId[index]});
+        index+=1;
       })
     }
     
@@ -44,6 +46,8 @@ componentDidMount = () =>{
   render() {
     // TODO: Switch this to an AJAX-type call/or react state/prop to bring in real data.
     let jsonUserList = this.state.arrUserList;
+    let tripId = [];
+    let index = 0;
     //console.log("props",this.props.tripToReact,this.props.userToReact);
     
     return (
@@ -61,6 +65,8 @@ componentDidMount = () =>{
               this.props.tripToReact.forEach((elem) =>{
                 var slicedstr = elem.destination.substring(0,elem.destination.length-5);
                 if(slicedstr === e.target.value){
+                  tripId.push(elem.id);
+                  //console.log("trip id",tripId);
                   this.props.userToReact.forEach((userElem) =>{
                     if(userElem.id === elem.user_id){
                       userArr.push(userElem)
@@ -70,7 +76,7 @@ componentDidMount = () =>{
               })
               
              console.log("user array",userArr);
-              this.updateCity(e.target.value,userArr);
+              this.updateCity(e.target.value,userArr,tripId);
             }
           }
             disabled
@@ -82,11 +88,12 @@ componentDidMount = () =>{
               {/* <div className="carousel-inner" > */}
               <div className ="row">
                 {jsonUserList.users.map(function(user,key){
+                  
                      return(
                       <div key={user.id} className={`item${key === 0 ? ' active' : ''}`}>
                       <div className="col-sm-6 col-md-4" >
                       <div className="thumbnail">
-                      <img className="card-img-top-250" src="https://static.pexels.com/photos/374710/pexels-photo-374710.jpeg" alt="Card image cap"/>
+                      <img className="card-img-top-250" src={user.user_img} alt="Card image cap"/>
                         <h4 className="card-title">{user.name}</h4>
                         <p className="card-text">{user.description}</p>
                      
@@ -94,12 +101,13 @@ componentDidMount = () =>{
                         <li className="list-group-item">{user.gender}</li>
                         <li className="list-group-item">{user.country}</li>
                       </ul>
-                      <p><a href={"/trip/chat/" + user.id + '?name=' + user.name} key={user.id} target="_blank" className="btn btn-primary" role="button">Chat</a></p>
+                      <p><a href={"/trip/chat/" + user.trip} key={user.id} target="_blank" className="btn btn-primary" role="button">Chat</a></p>
                       </div>
                     
                       </div>   
                       </div>               
                      )
+                     index +=1;
                   })
                 }
               </div>
