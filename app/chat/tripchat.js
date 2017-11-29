@@ -36,7 +36,7 @@ io.on('connection', function(socket){
           if(response){
             console.log(response)
             response.keywords.forEach((item) =>{ 
-              if(!(item['text'].includes('watson'))){
+              if(!(item['text'].includes('routetour'))){
                 strGoogleQuery += item['text'] + ' ';
                 //queryArray.push(item['text']);
               }
