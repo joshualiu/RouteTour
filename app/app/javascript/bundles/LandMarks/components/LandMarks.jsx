@@ -340,7 +340,6 @@ const Flightdata = {
     let departure_date = this.state.departure_date
     let return_date = this.state.return_date
 
-    tECkidFhJHgeSVtvdAoN7hNRc9dOGArq
     let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=tECkidFhJHgeSVtvdAoN7hNRc9dOGArq&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
     console.log("featch- get request URL:", flight_url)
     fetch(flight_url, {
@@ -444,6 +443,7 @@ const Flightdata = {
               this.search()
               this.google_search()
               this.search_flights()
+              // this.show_weather()
             }
           }/><div><h4 style={{fontSize: '1.6em', paddingTop: '30px',paddingLeft: '240px'}}>Click RouteTour to get travel destination inspirations</h4></div>
           </div>}
@@ -486,8 +486,7 @@ const Flightdata = {
 
                
               <div>
-                <h3>Weather</h3>
-                  <Weather cityname= {this.state.weatherQuery}/> 
+                  {/* <Weather cityname= {this.state.weatherQuery}/>  */}
 
               </div>
 
