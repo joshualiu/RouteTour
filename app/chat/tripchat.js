@@ -47,8 +47,8 @@ io.on('connection', function(socket){
              //searchFor();
              //console.log(JSON.stringify(response, null, 2));
           }else{
-            
-            io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+            searchFor(tripID,username,null);
+            //io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
             return;
           }
           
@@ -106,9 +106,8 @@ http.listen(port, function(){
 
 
 searchFor = (tripID, username,query) => {
-  
-    // Base URL to access customsearch
-    var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
+    if(query){
+      var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
   
     // Script-specific credentials & search engine
     var ApiKey = "AIzaSyDe80pVuP-mC6NQtMttxsmBta0J3HXrvLM";
@@ -131,4 +130,10 @@ searchFor = (tripID, username,query) => {
         io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
       }
     })
+    }else{
+      io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+    }
+  
+    // Base URL to access customsearch
+    
   }

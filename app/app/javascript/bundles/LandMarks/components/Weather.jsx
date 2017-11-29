@@ -118,9 +118,9 @@ class Map extends React.Component{
   }
 
   
-    componentWillMount(newProps){
-      if(this.props.cityname !== newProps.cityname){
-        this.handleFormSubmit(newProps.cityname);
+    componentWillMount(){
+      if(this.props.cityname){
+        this.handleFormSubmit(this.props.cityname);
       }
     }
    

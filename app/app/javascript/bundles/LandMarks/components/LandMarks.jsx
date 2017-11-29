@@ -339,7 +339,7 @@ const Flightdata = {
     let destination = this.state.destination
     let departure_date = this.state.departure_date
     let return_date = this.state.return_date
-    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=WxT65Q9xIzU5B32Q0kYjDk8zCdMezqVd&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
+    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=fqvmwegGMM1IuMrxmQaxoGwk7Wu0GVIU&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
     console.log("featch- get request URL:", flight_url)
     fetch(flight_url, {
       method: 'GET'
@@ -357,7 +357,7 @@ const Flightdata = {
 
   search() {
     let city = this.state.query    
-    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=WxT65Q9xIzU5B32Q0kYjDk8zCdMezqVd&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
+    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=fqvmwegGMM1IuMrxmQaxoGwk7Wu0GVIU&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
     console.log("featch- get request URL:", base_url)
     console.log("hard-coded NY data for now", Todata)
     fetch(base_url, {
@@ -409,7 +409,8 @@ const Flightdata = {
       destination: this.props.destination,
       departure_date: this.props.departure_date,
       return_date: this.props.return_date,
-      query: this.props.city
+      query: this.props.city,
+      weatherQuery: this.props.city
     })
  }
 
@@ -483,8 +484,8 @@ const Flightdata = {
 
                
               <div>
-                {/* <h3>Weather</h3> */}
-                  {/* <Weather cityname= {this.state.weatherQuery}/> */}
+                <h3>Weather</h3>
+                  <Weather cityname= {this.state.weatherQuery}/> 
 
               </div>
 
