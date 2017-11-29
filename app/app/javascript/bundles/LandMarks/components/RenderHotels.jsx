@@ -44,7 +44,9 @@ class RenderRestaurants extends Component {
             {results.map((elm, k) => (
                 <GridTile
                   key={k}
-                  title={<span>{Parser(elm.photos[0].html_attributions[0])}</span>}
+                  title={<span>{elm.name}</span>}
+                  
+                  // title={<span>{Parser(elm.photos[0].html_attributions[0])}</span>}
                   subtitle={elm.rating}
                   // actionIcon={<IconButton><StarBorder color="rgb(0, 188, 212)" /></IconButton>}
                   titleStyle={styles.titleStyle}

@@ -32,12 +32,12 @@ class ChatController < TripController
   end
 
   def dashboard
-  #   @hello_world_props = { 
-  #     city: "Hong Kong ",
-  #     origin: "BOS",
-  #     destination: "YYZ",
-  #     departure_date: "2017-12-25",
-  #     return_date: "2017-12-28",
-  #  }
+    @hello_world_props = { 
+      city: "Toronto",
+      origin: "BOS",
+      destination: "YYZ",
+      departure_date: "2017-12-25",
+      return_date: "2017-12-28",
+   }
   end
 end

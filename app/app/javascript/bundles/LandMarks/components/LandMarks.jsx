@@ -431,8 +431,9 @@ const Flightdata = {
       <div className="LandMarks">
         {console.log("passing data",this.props)}
         {console.log("current state",this.state)}
-        { this.state.click ? <div></div> : <img 
-          src={"https://cdn.worldvectorlogo.com/logos/react-router.svg"} width={100} height={100}
+        { this.state.click ? <div></div> : <div id="inspiration" style={{paddingTop: '250px'}}>
+          <img style={{marginLeft: '400px'}}
+          src={"https://cdn.worldvectorlogo.com/logos/react-router.svg"} width={300} height={300}
             onClick={ () => {
               this.setState({click: true})
               console.log("wow")
@@ -441,7 +442,8 @@ const Flightdata = {
               this.google_search()
               this.search_flights()
             }
-          }/>}
+          }/><div><h4 style={{fontSize: '1.6em', paddingTop: '30px',paddingLeft: '240px'}}>Click RouteTour to get travel destination inspirations</h4></div>
+          </div>}
           {/* {this.search()}
           {this.google_search()}
           {this.search_flights()} */}
