@@ -39,8 +39,10 @@ arrProfilePictures = ["http://localhost:3000/assets/profilepic1.png","http://loc
     description: Faker::Company.profession
   })
 
-  # Then add 1-3 trips for each user.
-  1 + rand(2).times do |index2|
+  # # Then add 1-3 trips for each user.
+  # 1 + rand(2).times do |index2|
+  # Then add 1 trip for each user.
+  1.times do |index2|
     Trip.create!({
       destination: arrCities.sample,
       description: Faker::Lorem.sentence(3, true, 4),
