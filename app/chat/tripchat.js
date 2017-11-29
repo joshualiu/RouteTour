@@ -19,7 +19,7 @@ io.on('connection', function(socket){
   
   socket.on('chat message', function(tripID, username,  msg){
     io.emit('chat message', tripID, username, msg);
-    if(msg.includes('watson')){
+    if(msg.includes('routetour')){
     nlu.analyze({
       'html': msg, // Buffer or String
       'features': {
@@ -47,8 +47,8 @@ io.on('connection', function(socket){
              //searchFor();
              //console.log(JSON.stringify(response, null, 2));
           }else{
-            searchFor(tripID,username,null);
-            //io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+            searchFor(tripID, username, null)
+            // io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
             return;
           }
           
@@ -106,6 +106,7 @@ http.listen(port, function(){
 
 
 searchFor = (tripID, username,query) => {
+<<<<<<< HEAD
     if(query){
       var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
   
@@ -136,4 +137,37 @@ searchFor = (tripID, username,query) => {
   
     // Base URL to access customsearch
     
+=======
+
+  if(query) {
+    var urlTemplate = "https://www.googleapis.com/customsearch/v1?key=%KEY%&cx=%CX%&q=%Q%";
+    
+      // Script-specific credentials & search engine
+      var ApiKey = "AIzaSyDe80pVuP-mC6NQtMttxsmBta0J3HXrvLM";
+      var searchEngineID = "001821595967333671065:nb59ve0r6gs";
+    
+      // Build custom url
+      var url = urlTemplate
+        .replace("%KEY%", encodeURIComponent(ApiKey))
+        .replace("%CX%", encodeURIComponent(searchEngineID))
+        .replace("%Q%", encodeURIComponent(query));
+    
+      var params = {
+        muteHttpExceptions: true
+      };
+    
+      request(url,(error,response) => {
+        if(JSON.parse(response.body).items[0].link){
+          io.emit('suggestion',tripID, username,JSON.parse(response.body).items[0].link);
+        } else {
+          io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+        }
+      })
+    } else {
+        io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
+  }
+  
+    // Base URL to access customsearch
+   
+>>>>>>> 0596c2e2783f2bc2e628610ae8cb9075379d8c67
   }
