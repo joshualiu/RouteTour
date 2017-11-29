@@ -38,7 +38,7 @@ var worldDataProvider = {
         label: `Toronto (${cToronto})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        //title: "Toronto",
+        title: "Toronto",
         //description: showChat(),
         labelPosition: "bottom",
         selectedScale: 2
@@ -63,7 +63,7 @@ var worldDataProvider = {
         label: `Montreal (${cMontreal})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Montreal",
+        title: "Montreal",
         //description: "4 users",
         selectedScale: 2
     },
@@ -76,7 +76,7 @@ var worldDataProvider = {
         label: `Amsterdam (${cAmsterdam})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Amsterdam",
+        title: "Amsterdam",
         //description: "4 users",
         selectedScale: 2
     },
@@ -89,7 +89,7 @@ var worldDataProvider = {
         label: `Bangkok (${cBangkok})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Bangkok",
+        title: "Bangkok",
         //description: "4 users",
         selectedScale: 2
     },
@@ -102,7 +102,7 @@ var worldDataProvider = {
         label: `Berlin (${cBerlin})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Berlin",
+        title: "Berlin",
         //description: "4 users",
         selectedScale: 2
     },
@@ -115,7 +115,7 @@ var worldDataProvider = {
         label: `Chicago (${cChicago})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Chicago",
+        title: "Chicago",
         //description: "4 users",
         selectedScale: 2
     },
@@ -128,7 +128,7 @@ var worldDataProvider = {
         label: `Washington (${cDC})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Washington",
+        title: "Washington",
         //description: "4 users",
         selectedScale: 2
     },
@@ -141,7 +141,7 @@ var worldDataProvider = {
         label: `Hong Kong (${cHongKong})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Hong Kong",
+        title: "Hong Kong",
         //description: "4 users",
         selectedScale: 2
     },
@@ -154,7 +154,7 @@ var worldDataProvider = {
         label: `Istanbul (${cIstanbul})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Istanbul",
+        title: "Istanbul",
         //description: "4 users",
         selectedScale: 2
     },
@@ -167,7 +167,7 @@ var worldDataProvider = {
         label: `Kuala Lumpur (${cKualaLumpur})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Kuala Lumpur",
+        title: "Kuala Lumpur",
         //description: "4 users",
         selectedScale: 2
     },
@@ -180,7 +180,7 @@ var worldDataProvider = {
         label: `Las Vegas (${cLasVegas})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Las Vegas",
+        title: "Las Vegas",
         //description: "4 users",
         selectedScale: 2
     },
@@ -193,7 +193,7 @@ var worldDataProvider = {
         label: `London (${cLondon})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "London",
+        title: "London",
         //description: "4 users",
         selectedScale: 2
     },
@@ -206,7 +206,7 @@ var worldDataProvider = {
         label: `Los Angeles (${cLosAngeles})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Los Angeles",
+        title: "Los Angeles",
         //description: "4 users",
         selectedScale: 2
     },
@@ -219,7 +219,7 @@ var worldDataProvider = {
         label: `Milan (${cMilan})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Milan",
+        title: "Milan",
         //description: "4 users",
         selectedScale: 2
     },
@@ -232,7 +232,7 @@ var worldDataProvider = {
         label: `New York (${cNewYork})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "New York",
+        title: "New York",
         //description: "4 users",
         selectedScale: 2
     },
@@ -245,7 +245,7 @@ var worldDataProvider = {
         label: `Osaka (${cOsaka})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Osaka",
+        title: "Osaka",
         //description: "4 users",
         selectedScale: 2
     },
@@ -258,7 +258,7 @@ var worldDataProvider = {
         label: `Paris (${cParis})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Paris",
+        title: "Paris",
         //description: "4 users",
         selectedScale: 2
     },
@@ -271,7 +271,7 @@ var worldDataProvider = {
         label: `Prague (${cPrague})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Prague",
+        title: "Prague",
         //description: "4 users",
         selectedScale: 2
     },
@@ -284,7 +284,7 @@ var worldDataProvider = {
         label: `Rome (${cRome})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Rome",
+        title: "Rome",
         //description: "4 users",
         selectedScale: 2
     },
@@ -297,7 +297,7 @@ var worldDataProvider = {
         label: `Seoul (${cSeoul})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Seoul",
+        title: "Seoul",
         //description: "4 users",
         selectedScale: 2
     },
@@ -310,7 +310,7 @@ var worldDataProvider = {
         label: `Shanghai (${cShanghai})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Shanghai",
+        title: "Shanghai",
         //description: "4 users",
         selectedScale: 2
     },
@@ -323,7 +323,7 @@ var worldDataProvider = {
         label: `Singapore (${cSingapore})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Singapore",
+        title: "Singapore",
         //description: "4 users",
         selectedScale: 2
     },
@@ -336,7 +336,7 @@ var worldDataProvider = {
         label: `Sydney (${cSydney})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Sydney",
+        title: "Sydney",
         //description: "4 users",
         selectedScale: 2
     },
@@ -349,7 +349,7 @@ var worldDataProvider = {
         label: `Taipei (${cTaipei})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Taipei",
+        title: "Taipei",
         //description: "4 users",
         selectedScale: 2
     },
@@ -362,7 +362,7 @@ var worldDataProvider = {
         label: `Tokyo (${cTokyo})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Tokyo",
+        title: "Tokyo",
         //description: "4 users",
         selectedScale: 2
     },
@@ -375,7 +375,7 @@ var worldDataProvider = {
         label: `Vienna (${cVienna})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Vienna",
+        title: "Vienna",
         //description: "4 users",
         selectedScale: 2
     },
@@ -388,7 +388,7 @@ var worldDataProvider = {
         label: `Zurich (${cZurich})`,
         labelShiftY: 2,
         zoomLevel: 5,
-        // title: "Zurich",
+        title: "Zurich",
         //description: "4 users",
         selectedScale: 2
     }
