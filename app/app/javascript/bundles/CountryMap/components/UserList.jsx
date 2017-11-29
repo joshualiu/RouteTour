@@ -29,7 +29,7 @@ export default class UserList extends React.Component {
     if(userElem.length){
       let index = 0;
       userElem.forEach((item) =>{
-        jsonUserList.users.push({id: item.id,name: item.first_name,description: item.description,gender: item.gender,country: item.country,trip: tripId[index]});
+        jsonUserList.users.push({id: item.id,image:item.user_img,name: item.first_name,description: item.description,gender: item.gender,country: item.country,trip: tripId[index]});
         index+=1;
       })
     }
@@ -93,7 +93,7 @@ componentDidMount = () =>{
                       <div key={user.id} className={`item${key === 0 ? ' active' : ''}`}>
                       <div className="col-sm-6 col-md-4" >
                       <div className="thumbnail">
-                      <img className="card-img-top-250" src={user.user_img} alt="Card image cap"/>
+                      <img className="card-img-top-250" src={user.image} alt="Card image cap"/>
                         <h4 className="card-title">{user.name}</h4>
                         <p className="card-text">{user.description}</p>
                      
