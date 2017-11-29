@@ -77,87 +77,19 @@
         <a href="javascript:$.notify('Instagram account has not been added.');" class="icon-insta" ></a>
 </div>
 
- <div class="container">
-        <div class="row">
-            <div class="cd-tabs">
-                <div class="nav">
-                    <ul class="cd-tabs-navigation simple">
-                        <li>
-                            <a id="tab01" data-content="tab01" class="selected"  href="#">
-                                About Me
-                            </a>
-                        </li>
-                        <li>
-                            <a data-content="tab02"  href="#">
-                                My Trips
-                            </a>
-                        </li>
-                        <li>
-                            <a data-content="tab03"  href="#">
-                                Photos
-                            </a>
-                        </li>
-                            <li><a data-content="tab04"  href="#">Edit Profile</a></li>
-                    </ul>
-                </div>
-
-                <div class="cd-tabs-content">
-
-                    <div class="cd-item about-block selected" data-content="tab01">
-                        <div class="basic">
-                        <div class="col-xs-12">
-                                <p><i class="web-icon speech"></i>User First Name</p>
-                                <p><span class="profile-langs"><%= current_user.first_name %></span></p>
-                            </div>
-                             <div class="col-xs-12">
-                                <p><i class="web-icon speech"></i>User Last Name</p>
-                                <p><span class="profile-langs"><%= current_user.last_name %></span></p>
-                            </div>
-                            
-                             <div class="col-xs-12">
-                                <p><i class="web-icon person"></i>Email</p>
-                                <p><span><%= current_user.email %></span></p>
-                            </div>
-                            <div class="col-xs-12">
-                                <p><i class="web-icon flag"></i>Country:</p>
-                                <p><span><%= current_user.country %></span></p>
-                            </div>
-                            <div class="col-xs-12">
-                                <p><i class="web-icon gender"></i>Gender:</p>
-                                <p><span><%= current_user.gender %></span></p>
-                            </div>
-                           
-                            <div class="col-xs-12">
-                                <p><i class="web-icon place"></i>Description:</p>
-                                <p><span><%= current_user.description %></span></p>
-                            </div>
-                            
-                            
-                        </div>
-
-<hr />
+ <div  class="container" >
 
 
-<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/maps/js/continentsLow.js"></script>
-<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
-<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
-<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
-
-<script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
-<script src="https://unpkg.com/react-trigger-change/dist/react-trigger-change.js"></script>
-
-<hr />
-<%= csrf_meta_tags %>
-<%= javascript_pack_tag 'countrymap-userlist-bundle' %>
-<%= javascript_pack_tag 'countrymap' %>
-<div id="chartdiv"></div>
-<hr />
-<div id="usersdiv" style="display:none">
-<h1>Other Users</h1>
-<%= react_component("UserList", props: {userToReact: @userlistprops, tripToReact: @trip}, prerender: false) %>
+            <hr />
+            <%= csrf_meta_tags %>
+            <%= javascript_pack_tag 'countrymap-userlist-bundle' %>
+            <%= javascript_pack_tag 'countrymap' %>
+            <div id="chartdiv"></div>
+            <hr />
+            <div id="usersdiv" style="display:none">
+            <h1>Other Users</h1>
+            <%= react_component("UserList", props: {userToReact: @userlistprops, tripToReact: @trip}, prerender: false) %>
 
 
-<hr />
+            <hr />
 </div>

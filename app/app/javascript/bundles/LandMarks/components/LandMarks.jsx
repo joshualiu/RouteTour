@@ -483,7 +483,7 @@ const Flightdata = {
 
                
               <div>
-                {/* <h5>Weather</h5> */}
+                {/* <h3>Weather</h3> */}
                   {/* <Weather cityname= {this.state.weatherQuery}/> */}
 
               </div>
