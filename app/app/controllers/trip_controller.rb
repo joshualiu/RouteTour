@@ -1,4 +1,6 @@
 class TripController < ApplicationController
+  before_action :authenticate_user!
+
   def index
     # @hello_world_props = { name: "Stranger" }
     @userlistprops = {name: "T.O."}
