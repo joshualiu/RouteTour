@@ -16,10 +16,7 @@ export default class UserList extends React.Component {
     this.state = { 
       arrUserList: {
         "users": [
-          {"id": 1, "name":"Test User 1", "city":"montreal"},
-          {"id": 2, "name":"Test User 2", "city":"montreal"},
-          {"id": 3, "name":"Test User 3", "city":"montreal"},
-          {"id": 4, "name":"Test User 3", "city":"montreal"}
+          
         ]
       } 
     }
@@ -33,14 +30,6 @@ export default class UserList extends React.Component {
       userElem.forEach((item) =>{
         jsonUserList.users.push({id: item.id,name: item.first_name,description: item.description,gender: item.gender,country: item.country});
       })
-    }else{
-      jsonUserList.users.push(      
-          {"id": 7, "name":"Test User 1", "city": name},
-          {"id": 8, "name":"Test User 2", "city": name},
-          {"id": 9, "name":"Test User 3", "city": name},
-          {"id": 10, "name":"Test User 4", "city": name},
-          {"id": 11, "name":"Test User 5", "city": name}
-      )
     }
     
     this.setState({ arrUserList: jsonUserList } );
@@ -88,10 +77,10 @@ componentDidMount = () =>{
           />
           <p />
         
-            <div className="carousel slide" id="postsCarousel" data-ride="carousel">  
+          <div className="carousel slide" id="postsCarousel" data-ride="carousel" style={{"width" : "100%"}}> 
           
-              <div className="carousel-inner" >
-              
+              {/* <div className="carousel-inner" > */}
+              <div className ="row">
                 {jsonUserList.users.map(function(user,key){
                      return(
                       <div className={`item${key === 0 ? ' active' : ''}`}>

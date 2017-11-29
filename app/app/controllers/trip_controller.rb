@@ -1,7 +1,8 @@
 class TripController < ApplicationController
   def index
     # @hello_world_props = { name: "Stranger" }
-    @userlistprops = {name: "T.O."}
+    @userlistprops = User.all
+    @trip = Trip.all
   end
 
   def new
