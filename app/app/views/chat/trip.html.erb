@@ -20,7 +20,7 @@
     <script src="https://code.jquery.com/jquery-1.11.1.js"></script>
     <script src="https://cdn.socket.io/socket.io-1.2.0.js"></script>
 
-    <%= javascript_pack_tag 'chat-bundle' %>
+    <%# <%= javascript_pack_tag 'chat-bundle' %> 
     <%# <%= react_component("Chat", props: @chat_messages_props, prerender: false) %>
     <script>
       $(function () {
@@ -64,7 +64,7 @@
 
     <div>
       <div id='whatever' style="float:right; width: 65%">
-    <%= react_component("LandMarks", props: @hello_world_props, prerender: false) %>
+    <%= react_component("LandMarks", props: @chat_messages_props, prerender: false) %>
   </div>
   </div>
 
