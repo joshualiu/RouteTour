@@ -21,6 +21,9 @@ end
 #arrCities = ["Toronto", "New York", "Montreal", "London", "Chicago", "Los Angeles", "Las Vegas", "Paris", "Rome", "Barcelona", "DC", "Zurich", "Berlin", "Tokyo", "Taipei", "Shanghai", "Sydney", "Buenos Aires", "Prague", "Vienna", "Osaka", "Milan", "Amsterdam", "Hong Kong", "Seoul", "Istanbul", "Kuala Lumpur", "Singapore", "Bangkok"]
 arrCities = ["Amsterdam(AMS)","Bangkok(DMK)","Berlin(TXL)","Chicago(ORD)","DC(DCA)","Hong Kong(HKG)","Istanbul(IST)","Kuala Lumpur(KUL)","Las Vegas(LAS)","London(LHR)","Los Angeles(LAX)","Milan(MXP)","Montreal(YUL)","New York(JFK)","Osaka(ITM)","Paris(CDG)","Prague(PRG)","Rome(FCO)","Seoul(ICN)","Shanghai(PVG)","Singapore(SIN)","Sydney(SY)","Taipei(TPE)","Tokyo(HND)","Toronto(YYZ)","Vienna(VIE)","Zurich(ZRH)"]
 
+# Create array of file names for generic user profiles.
+arrProfilePictures = ["http://localhost:3000/assets/profilepic1.png","http://localhost:3000/assets/profilepic2.png","http://localhost:3000/assets/profilepic3.png","http://localhost:3000/assets/profilepic4.png","http://localhost:3000/assets/profilepic5.png","http://localhost:3000/assets/profilepic6.png","http://localhost:3000/assets/profilepic7.png","http://localhost:3000/assets/profilepic8.png","http://localhost:3000/assets/profilepic9.png","http://localhost:3000/assets/profilepic10.png","http://localhost:3000/assets/profilepic11.png","http://localhost:3000/assets/profilepic12.png","http://localhost:3000/assets/profilepic13.png","http://localhost:3000/assets/profilepic14.png","http://localhost:3000/assets/profilepic15.png","http://localhost:3000/assets/profilepic16.png","http://localhost:3000/assets/profilepic17.png","http://localhost:3000/assets/profilepic18.png","http://localhost:3000/assets/profilepic19.png","http://localhost:3000/assets/profilepic20.png"]
+
 # arrCountries = [""]
 
 # Add some users to the database.
@@ -32,7 +35,7 @@ arrCities = ["Amsterdam(AMS)","Bangkok(DMK)","Berlin(TXL)","Chicago(ORD)","DC(DC
     last_name: Faker::Name.last_name,
     gender: Faker::Demographic.sex,
     country: arrCities.sample,
-    user_img: "http://localhost:3000/assets/profilepic1.png",
+    user_img: arrProfilePictures.sample,#"http://localhost:3000/assets/profilepic1.png",
     description: Faker::Company.profession
   })
 

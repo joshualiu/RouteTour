@@ -3,8 +3,8 @@
   * { margin: 0; padding: 0; box-sizing: border-box; }
   body { font: 13px Helvetica, Arial; }
   form { background: #000; padding: 3px; position: fixed; bottom: 0; width: 35%; }
-  form input { border: 0; padding: 10px; width: 80%; margin-right: .5%; }
-  form button { width: 19%; background: rgb(130, 224, 255); border: none; padding: 10px; }
+  form input { border: 0; padding: 10px; width: 70%; margin-right: .5%; }
+  form button { width: 26%; background: rgb(130, 224, 255); border: none; padding: 10px; }
   #messages { list-style-type: none; margin: 0; padding: 0; }
   #messages li { padding: 5px 10px; }
   #messages li:nth-child(odd) { background: rgb(130, 224, 255); }
@@ -12,7 +12,7 @@
 </style>
 
 <div style="width: 100%;">
-  <div id="chatwindow" style="float:left; width:35%; position:fixed; height:100%; overflow:auto">
+  <div id="chatwindow" style="float:left; width:35%; position:fixed; height:100%; overflow:auto; overflow-y: scroll;">
     <ul id="messages"></ul>
     <form action="" style="opacity:0.9">
       <input id="m" autocomplete="off" /><button>Send</button>
@@ -27,17 +27,26 @@
         //var urlToImage = fetch('url-to-image');
         var socket = io("http://localhost:8080");
 
-        $.urlParam = function(name){
-          var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
-          return results[1] || 0;
-        }
-        let username = decodeURIComponent($.urlParam('name'));
+        <%# Disabled username as available URL param.
+          $.urlParam = function(name){
+            var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+            return results[1] || 0;
+
+            let username = decodeURIComponent($.urlParam('name'));
+        } %>
+        
+        <% if user_signed_in? %>
+          let username = "<%= current_user.first_name %>"// <%= current_user.last_name %>
+        <% else %>
+          let username = "Anonymous"
+        <% end %>
 
         $('form').submit(function(){
-          socket.emit('chat message',<%= params[:tripid] %>, $.urlParam('name'), $('#m').val());
+          socket.emit('chat message',<%= params[:tripid] %>, username, $('#m').val());
           $('#m').val('');
           return false;
         });
+
         socket.on('chat message', function(tripid, username, msg){
           // Only show messages if they're meant for the trip (tripid).
           if (tripid === <%= params[:tripid] %>){
@@ -51,12 +60,22 @@
             cw.scrollTop = 5000//document.body.scrollHeight
           }
         });
-        socket.on('suggestion',function(tripid, username,msg){
-          //console.log(msg);
-          htmlstr = `<a href=${msg}target="_blank">'${msg}'</a>`; 
-          console.log(htmlstr);
-          $('#messages').append($('<li>').html(decodeURIComponent(username) + ':  '+ htmlstr));
-          window.scrollTo(0, document.body.scrollHeight);
+        
+        socket.on('suggestion',function(tripid, username, msg){
+          // Only show messages if they're meant for the trip (tripid).
+          if (tripid === <%= params[:tripid] %>){
+            //console.log(msg);
+            htmlstr = `<a href=${msg}target="_blank">'${msg}'</a>`; 
+            console.log(htmlstr);
+            $('#messages').append($('<li>').html(decodeURIComponent(username) + ':  '+ htmlstr));
+
+            // The line below scrolls to the bottom of the dashboard/window.
+            // window.scrollTo(0, document.body.scrollHeight);
+
+            // The line below scrolls to the bottom of the chat window.
+            let cw = document.getElementById("chatwindow")
+            cw.scrollTop = 5000//document.body.scrollHeight
+          }
         });
       });
     </script>
