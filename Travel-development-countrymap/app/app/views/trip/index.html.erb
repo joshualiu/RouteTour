@@ -1,0 +1,26 @@
+<h1>Trip#index</h1>
+<p>Find me in app/views/trip/index.html.erb???</p>
+
+<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/continentsLow.js"></script>
+<script src="https://www.amcharts.com/lib/3/plugins/export/export.min.js"></script>
+<link rel="stylesheet" href="https://www.amcharts.com/lib/3/plugins/export/export.css" type="text/css" media="all" />
+<script src="https://www.amcharts.com/lib/3/themes/none.js"></script>
+
+<script src="https://www.amcharts.com/lib/3/maps/js/canadaLow.js"></script>
+<script src="https://unpkg.com/react-trigger-change/dist/react-trigger-change.js"></script>
+
+<hr />
+<%= csrf_meta_tags %>
+<%= javascript_pack_tag 'countrymap-userlist-bundle' %>
+<%= javascript_pack_tag 'countrymap' %>
+<div id="chartdiv"></div>
+<hr />
+<div id="usersdiv" style="display:none">
+<h1>Other Users</h1>
+<%= react_component("UserList", props: {userToReact: @userlistprops, tripToReact: @trip}, prerender: false) %>
+<%= react_component("AvatarExampleSimple", prerender: false) %>
+
+<hr />
+</div>

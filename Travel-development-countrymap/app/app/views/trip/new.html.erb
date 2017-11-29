@@ -1,0 +1,109 @@
+<div class="content breadcrumbs header">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-12">
+                <ul class="">
+                    <li><a class="divider"><i class="fa fa-chevron-left"></i></a></li>
+                    <li><a href="/">Back to homepage</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a href="/trip/index">Browse All Trips</a></li>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <li><a rel="nofollow" data-method="delete" href="/users/sign_out">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div> 
+
+
+<div id="slider-home" class="registration fill">  
+    <div id="main-text" class="col-lg-10 col-lg-offset-1 col-md-12 col-md-offset-0 col-sm-12 col-xs-12">
+        <div class="text-holder">
+            <h1><%= current_user.first_name %>, Create a new trip!</h1>
+        </div>
+        <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 form-wrapper header">
+            <%# <form action="/sign/register" method="post" id="frm-registerForm"> %>
+                <div class="form-holder step-one active">
+                    <div class="form-group">             
+                        <%# <input type="text" name="email" placeholder="Email Address" class="form-control" id="frm-registerForm-email" required data-nette-rules='[{"op":":filled","msg":"Email is required"},{"op":":email","msg":"Set a valid email"}]'>
+                        <input type="password" name="password" placeholder="Password" class="form-control" id="frm-registerForm-password" required data-nette-rules='[{"op":":filled","msg":"Password is required"},{"op":":minLength","msg":"Password has to be at least 5 characters long.","arg":5}]'>
+                        <a id="continue" href="#" class="btn btn-yellow register-next">Log in</a> %>
+                        
+<% if user_signed_in? %>
+  <%# <hr /> %>
+  <%= form_for(@trip, url: '/trip', html: { method: :post }) do |f| %>
+  
+  <div class="field">
+    <%= f.label :user_id %>
+    <%= f.text_field :user_id %>
+  </div>
+
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+  </div>
+
+  <div class="field">
+    <%= f.label :destination %>
+    <%= f.select :destination, [['',nil],['Amsterdam','Amsterdam(AMS)'],['Bangkok','Bangkok(TXL)'],['Chicago','Chicago(ORD)'],['DC','DC(DCA)'],['Hong Kong','Hong Kong(HKG)'],['Istanbul','Istanbul(IST)'],['Kuala Lumpur','Kuala Lumpur(KUL)'],['Las Vegas','Las Vegas(LAS)'],['London','London(LHR)'],['Los Angeles','Los Angeles(LAX)'],['Milan','Milan(MXP)'],['Montreal','Montreal(YUL)'],['New York','New York(JFK)'],['Osaka','Osaka(ITM)'],['Paris','Paris(CDG)'],['Prague','Prague(PRG)'],['Rome','Rome(FCO)'],['Seoul','Seoul(ICN)'],['Shanghai','Shanghai(PVG)'],['Singapore','Singapore(SIN)'],['Sydney','Sydney(SYD)'],['Taipei','Taipei(TPE)'],['Tokyo','Tokyo(HND)'],['Toronto','Toronto(YYZ)'],['Vienna','Vienna(VIE)'],['Zurich','Zurich(ZRH)']] %>
+<%# ['Amsterdam','Amsterdam(AMS)'],['Bangkok','Bangkok(TXL)'],['Chicago','Chicago(ORD)'],['DC','DC(DCA)'],['Hong Kong','Hong Kong(HKG)'],['Istanbul','Istanbul(IST)'],['Kuala Lumpur','Kuala Lumpur(K]UL'),['Las Vegas','Las Vegas(LAS)'],['London','London(LHR)'],['Los Angeles','Los Angeles(LA]X'),['Milan','Milan(MXP)'],['Montreal','Montreal(YUL)'],['New York','New York(JFK)'],['Osaka','Osaka(ITM)'],['Paris','Paris(CDG)'],['Prague','Prague(PRG)'],['Rome','Rome(FCO)'],['Seoul','Seoul(ICN)'],['Shanghai','Shanghai(PVG)'],['Singapore','Singapore(SIN)'],['Sydney','Sydney(SYD)'],['Taipei','Taipei(TPE)'],['Tokyo','Tokyo(HND)'],['Toronto','Toronto(YYZ)'],['Vienna','Vienna(VIE)'],['Zurich','Zurich(ZRH)'] %>
+
+  </div>
+
+  <div class="field">
+    <%= f.label :start_date %><br />
+    <%= f.datetime_local_field(:start_date) %>
+  </div>
+
+  <div class="field">
+    <%= f.label :end_date %><br />
+    <%= f.datetime_field(:end_date) %>
+  </div>
+
+  <div class="actions">
+    <%= f.submit "Create Trip" %>
+  </div>
+  <% end %>
+
+  
+  <%# <hr /> %>
+<% end %>
+</div>
+                            
+
+                    
+
+
+
+
+                </div>
+        </div>
+    </div>
+    <div id="main-slide" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#main-slide" data-slide-to="0" class="active"></li>
+            <%# <li id="slide-to-1" data-target="#main-slide" data-slide-to="1"></li> %>
+        </ol>
+        <div class="carousel-inner">
+            <%# <div class="item active" data-slide="/assets/images/registration01.jpg"></div>
+            <div class="item" data-slide="/assets/images/registration02.jpg"></div> %>
+          <div class="item active">
+            <img className="full-screen" src="/toronto4.jpg" alt="Los Angeles" style="width:100%;height:auto;filter:blur(1px);opacity:0.7">
+          </div>
+              
+
+
+            
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
