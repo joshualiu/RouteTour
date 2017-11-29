@@ -443,6 +443,7 @@ const Flightdata = {
               this.search()
               this.google_search()
               this.search_flights()
+              // this.show_weather()
             }
           }/><div><h4 style={{fontSize: '1.6em', paddingTop: '30px',paddingLeft: '240px'}}>Click RouteTour to get travel destination inspirations</h4></div>
           </div>}
@@ -485,8 +486,7 @@ const Flightdata = {
 
                
               <div>
-                <h3>Weather</h3>
-                  <Weather cityname= {this.state.weatherQuery}/> 
+                  {/* <Weather cityname= {this.state.weatherQuery}/>  */}
 
               </div>
 
