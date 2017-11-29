@@ -34,7 +34,7 @@ class RenderRestaurants extends Component {
       if(this.props.data){
         const results = this.props.data.slice(0,8)
         return (
-          <div><h5>Hotels</h5>
+          <div><h3>Hotels</h3>
           
           <div style={styles.root}>
                   <MuiThemeProvider>
@@ -52,7 +52,7 @@ class RenderRestaurants extends Component {
                   titleStyle={styles.titleStyle}
                   titleBackground="linear-gradient(to top, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 70%,rgba(0,0,0,0) 100%)"
                 > 
-                  <img src={elm.photos[0].getUrl(({'maxWidth': 1000, 'maxHeight': 1000}))} style={{opacity:0.75}}/>
+                  <img src={elm.photos[0].getUrl(({'maxWidth': 1000, 'maxHeight': 1000}))} style={{opacity:0.7}}/>
 
                   </GridTile>
                   

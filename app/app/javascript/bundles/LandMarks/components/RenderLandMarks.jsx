@@ -10,12 +10,10 @@ class RenderLandMarks extends Component {
       let landmarks = this.props.data.points_of_interest;
       return (
         <div>
-          <h5>{ cityname } LandMarks</h5>
+          <h3>Places to visit in { cityname } </h3>
               {
                 landmarks.map((lm, k) => {
                   if(k < 5) {
-
-                  
                   return (
                     // <span key={k}>
                       <Media key={k}>

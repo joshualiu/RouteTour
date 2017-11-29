@@ -469,21 +469,19 @@ const Flightdata = {
                   data={ this.state.cityjson }
                   />
               </div>
-
-
-          <div className="return_flights">
-                <Flights
-                  data={ this.state.flightjson } 
-                  />  
-            </div>
-
-                <div>
+              <div>
                   <RenderRestaurants data={this.state.restaurantData} />
-                </div>
-                <div>
+              </div>
+              <div>
                   <RenderHotels data={this.state.hotelData} />
+              </div>
+
+
+              <div className="return_flights">
+                <Flights data={ this.state.flightjson }  />  
                 </div>
 
+               
               <div>
                 {/* <h5>Weather</h5> */}
                   {/* <Weather cityname= {this.state.weatherQuery}/> */}
