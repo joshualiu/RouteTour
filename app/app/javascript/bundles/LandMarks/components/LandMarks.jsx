@@ -410,7 +410,8 @@ const Flightdata = {
       destination: this.props.destination,
       departure_date: this.props.departure_date,
       return_date: this.props.return_date,
-      query: this.props.city
+      query: this.props.city,
+      weatherQuery: this.props.city
     })
  }
 
@@ -484,8 +485,8 @@ const Flightdata = {
 
                
               <div>
-                {/* <h3>Weather</h3> */}
-                  {/* <Weather cityname= {this.state.weatherQuery}/> */}
+                <h3>Weather</h3>
+                  <Weather cityname= {this.state.weatherQuery}/> 
 
               </div>
 
