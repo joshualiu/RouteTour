@@ -12,13 +12,45 @@
 <script src="https://unpkg.com/react-trigger-change/dist/react-trigger-change.js"></script>
 
 <hr />
+<script type="text/javascript">
+  // Users per country.
+	let cAmsterdam = "<%= @cAmsterdam %>";
+  let cBangkok = "<%= @cBangkok %>";
+  let cBerlin = "<%= @cBerlin %>";
+  let cChicago = "<%= @cChicago %>";
+  let cDC = "<%= @cDC %>";
+  let cHongKong = "<%= @cHongKong %>";
+  let cIstanbul = "<%= @cIstanbul %>";
+  let cKualaLumpur = "<%= @cKualaLumpur %>";
+  let cLasVegas = "<%= @cLasVegas %>";
+  let cLondon = "<%= @cLondon %>";
+  let cLosAngeles = "<%= @cLosAngeles %>";
+  let cMilan = "<%= @cMilan %>";
+  let cMontreal = "<%= @cMontreal %>";
+  let cNewYork = "<%= @cNewYork %>";
+  let cOsaka = "<%= @cOsaka %>";
+  let cParis = "<%= @cParis %>";
+  let cPrague = "<%= @cPrague %>";
+  let cRome = "<%= @cRome %>";
+  let cSeoul = "<%= @cSeoul %>";
+  let cShanghai = "<%= @cShanghai %>";
+  let cSingapore = "<%= @cSingapore %>";
+  let cSydney = "<%= @cSydney %>";
+  let cTaipei = "<%= @cTaipei %>";
+  let cTokyo = "<%= @cTokyo %>";
+  let cToronto = "<%= @cToronto %>";
+  let cVienna = "<%= @cVienna %>";
+  let cZurich = "<%= @cZurich %>";
+</script>
+
 <%= csrf_meta_tags %>
 <%= javascript_pack_tag 'countrymap-userlist-bundle' %>
 <%= javascript_pack_tag 'countrymap' %>
+
 <div id="chartdiv"></div>
 <hr />
 <div id="usersdiv" style="display:none">
-<h1>Other Users</h1>
+<h3>Other Users</h3>
 <%= react_component("UserList", props: @userlistprops, prerender: false) %>
 <%# <%= react_component("AvatarExampleSimple", prerender: false) %>
 

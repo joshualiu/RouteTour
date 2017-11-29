@@ -55,7 +55,7 @@ componentDidMount = () =>{
   render() {
     // TODO: Switch this to an AJAX-type call/or react state/prop to bring in real data.
     let jsonUserList = this.state.arrUserList;
-    console.log("props",this.props.tripToReact,this.props.userToReact);
+    //console.log("props",this.props.tripToReact,this.props.userToReact);
     
     return (
       <div>
@@ -94,7 +94,7 @@ componentDidMount = () =>{
               
                 {jsonUserList.users.map(function(user,key){
                      return(
-                      <div className={`item${key === 0 ? ' active' : ''}`}>
+                      <div key={user.id} className={`item${key === 0 ? ' active' : ''}`}>
                       <div className="col-sm-6 col-md-4" >
                       <div className="thumbnail">
                       <img className="card-img-top-250" src="https://static.pexels.com/photos/374710/pexels-photo-374710.jpeg" alt="Card image cap"/>
