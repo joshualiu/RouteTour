@@ -14,8 +14,8 @@ def open_asset(file_name)
 end
 
 # THE LINES BELOW should purge all tables.
-# User.destroy_all
-# Trip.destroy_all
+Trip.destroy_all
+User.destroy_all
 
 # Either use cities or countries to populate the user country field.
 #arrCities = ["Toronto", "New York", "Montreal", "London", "Chicago", "Los Angeles", "Las Vegas", "Paris", "Rome", "Barcelona", "DC", "Zurich", "Berlin", "Tokyo", "Taipei", "Shanghai", "Sydney", "Buenos Aires", "Prague", "Vienna", "Osaka", "Milan", "Amsterdam", "Hong Kong", "Seoul", "Istanbul", "Kuala Lumpur", "Singapore", "Bangkok"]
@@ -27,7 +27,7 @@ arrProfilePictures = ["http://localhost:3000/assets/profilepic1.png","http://loc
 # arrCountries = [""]
 
 # Add some users to the database.
-20.times do |index|
+200.times do |index|
   user = User.create!({
     email: Faker::Internet.email,
     password: "fake_encrypted_password",
@@ -44,8 +44,8 @@ arrProfilePictures = ["http://localhost:3000/assets/profilepic1.png","http://loc
     Trip.create!({
       destination: arrCities.sample,
       description: Faker::Lorem.sentence(3, true, 4),
-      start_date: Faker::Date.between(2.days.from_now, Date.today),
-      end_date: Faker::Date.between(7.days.from_now, 21.days.from_now),
+      start_date: Faker::Date.between(2.days.from_now, 6.days.from_now),
+      end_date: Faker::Date.between(9.days.from_now, 21.days.from_now),
       user_id: user.id
     })
   end
