@@ -26,17 +26,20 @@ arrProfilePictures = ["http://localhost:3000/assets/profilepic1.png","http://loc
 
 # arrCountries = [""]
 
+arrHobbies = ["3D printing","Acting","Amateur radio","Baton twirling","Board/Tabletop games","Book restoration","Cabaret","Calligraphy","Candle making","Coffee roasting","Coloring","Computer programming","Cooking","Cosplaying","Couponing","Creative writing","Crocheting","Cross-stitch","Crossword puzzles","Cryptography","Dance","Digital arts","Do it yourself","Drama","Drawing","Electronics","Embroidery","Fantasy Sports","Fashion","Fishkeeping","Flower arranging","Foreign language learning","Gaming (tabletop games and role-playing games)","Genealogy","Glassblowing","Gunsmithing","Herp keeping","Homebrewing","Hydroponics","Ice skating","Jewelry making","Jigsaw puzzles","Juggling","Knapping","Knife making","Knitting","Kombucha Brewing","Lacemaking","Lapidary","Leather crafting","Lego building","Listening to music","Machining","Macrame","Magic","Metalworking","Model building","Origami","Painting","Pet","Philately","Photography","Plastic embedding","Playing musical instruments","Poi","Pottery","Puzzles","Quilling","Quilting","Reading","Scrapbooking","Sculpting","Sewing","Singing","Sketching","Soapmaking","Stand-up comedy","Table tennis","Tatting","Taxidermy","Video gaming","Watching movies","Watching television","Web surfing","Whittling","Wood carving","Woodworking","Worldbuilding","Writing","Yo-yoing","Yoga","Outdoor hobbiesedit","Air sports","Archery","Astronomy","BASE jumping","Baseball","Basketball","Beekeeping","Bird watching","Blacksmithing","Board sports","Bodybuilding","Brazilian jiu-jitsu","Camping","Canyoning","Dowsing","Driving","Fishing","Flag football","Flying","Flying disc","Foraging","Freestyle football","Gardening","Geocaching","Ghost hunting","Graffiti","Handball","High-power rocketry","Hiking","Hooping","Horseback riding","Hunting","Inline skating","Jogging","Kayaking","Kite flying","Kitesurfing","LARPing","Letterboxing","Metal detecting","Motor sports","Mountain biking","Mountaineering","Mushroom hunting/Mycology","Netball","Nordic skating","Orienteering","Paintball","Parkour","Photography","Polo","Powerlifting","Rafting","Rappelling","Road biking","Rock climbing","Roller skating","Rugby","Running","Sailing","Sand art","Scouting","Scuba diving","Sculling or Rowing","Topiary","Shooting","Shopping","Skateboarding","Skiing","Skimboarding","Skydiving","Slacklining","Snowboarding","Stone skipping","Surfing","Swimming","Travel","Taekwondo","Tai chi","Urban exploration","Vacation","Vehicle restoration","Walking","Water sports"]
+
 # Add some users to the database.
 200.times do |index|
   user = User.create!({
     email: Faker::Internet.email,
-    password: "fake_encrypted_password",
+    password: "password",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     gender: Faker::Demographic.sex,
     country: arrCities.sample,
     user_img: arrProfilePictures.sample,#"http://localhost:3000/assets/profilepic1.png",
-    description: Faker::Company.profession
+    description: arrHobbies.sample + ", " + arrHobbies.sample + ", " + arrHobbies.sample
+    # description: Faker::Company.profession
   })
 
   # # Then add 1-3 trips for each user.
