@@ -6,7 +6,8 @@ class TripController < ApplicationController
     @trip = Trip.all
 
     # Get the COUNT(*) of Users GROUPED BY City.
-    @users_per_city = User.group(:country).count
+    # @users_per_city = User.group(:country).count
+    @users_per_city = Trip.group(:destination).count
 
     # Keep the variables separate to slide them into the javascript in the erb files.
     @cAmsterdam = @users_per_city["Amsterdam(AMS)"] || 0
