@@ -118,23 +118,21 @@ class Map extends React.Component{
   }
 
   
-    componentWillMount(){
-      if(this.props.cityname){
-        this.handleFormSubmit(this.props.cityname);
-      }
-    }
+    // componentWillMount(){
+    //   if(this.props.cityname){
+    //     this.handleFormSubmit(this.props.cityname);
+    //   }
+    // }
    
   
   
   render(){
-    // if(this.props.cityname){
-    //   this.handleFormSubmit(this.props.cityname);
-    // }
+    if(this.props.cityname){
+      this.handleFormSubmit(this.props.cityname);
+    }
     return(
-     
             
         <div>
-         
           <div className="chartWithMarkerOverlay" style = {{position: 'relative',width: 700 + 'px'}}>
             <div id="curve_chart" style={{width: 700 +'px', height: 500+'px'}}></div>
             <div>

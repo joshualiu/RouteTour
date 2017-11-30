@@ -106,23 +106,22 @@ import Weather from './Weather';
       departure_date: this.props.departure_date,
       return_date: this.props.return_date,
       query: this.props.city,
-      weatherQuery: this.props.city
     })
- }
-
-
+  }
+  
+  
   componentDidMount () {
     this.geocoder = new google.maps.Geocoder(); 
   }
-
-
+  
+  
   google_search(){
     this.geocodeAddress(this.state.googleQuery, "restaurant", "restaurants", "restaurantData");
     this.geocodeAddress(this.state.googleQuery, "lodging", "hotel", "hotelData");
   }
-
-
-    
+  
+  
+  
   render() {
     return (
       <div className="LandMarks">
@@ -131,13 +130,14 @@ import Weather from './Weather';
         { this.state.click ? <div></div> : <div id="inspiration" style={{paddingTop: '250px'}}>
           <img style={{marginLeft: '400px'}}
           src={"https://cdn.worldvectorlogo.com/logos/react-router.svg"} width={300} height={300}
-            onClick={ () => {
-              this.setState({click: true})
-              console.log("states", this.state)
-              this.search()
-              this.google_search()
-              this.search_flights()
-            }
+          onClick={ () => {
+            this.setState({click: true})
+            console.log("states", this.state)
+            this.search()
+            this.google_search()
+            this.search_flights()
+            this.setState({weatherQuery: this.props.city})
+          }
           }/><div><h4 style={{fontSize: '1.6em', paddingTop: '30px',paddingLeft: '240px'}}>Click RouteTour to get travel destination inspirations</h4></div>
           </div>}
           {/* {this.search()}
@@ -166,7 +166,6 @@ import Weather from './Weather';
                
               <div>
                   <Weather cityname= {this.state.weatherQuery}/> 
-
               </div>
 
 
