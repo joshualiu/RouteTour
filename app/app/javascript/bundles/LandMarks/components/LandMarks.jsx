@@ -165,7 +165,7 @@ import Weather from './Weather';
 
                
               <div>
-                  <ShowWeather cityname= {this.state.weatherQuery}/> 
+                  <Weather cityname= {this.state.weatherQuery}/> 
 
               </div>
 
