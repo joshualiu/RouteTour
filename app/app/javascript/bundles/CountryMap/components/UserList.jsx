@@ -101,7 +101,7 @@ componentDidMount = () =>{
                         <li className="list-group-item">{user.gender}</li>
                         <li className="list-group-item">{user.country}</li>
                       </ul>
-                      <p><a href={"/trip/chat/" + user.trip} key={user.id} target="_blank" className="btn btn-primary" role="button">Chat</a></p>
+                      <p><a href={"/trip/chat/" + user.trip} key={user.id} target="_blank" className=" btn-primary" role="button">Chat</a></p>
                       </div>
                     
                       </div>   
