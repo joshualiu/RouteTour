@@ -93,7 +93,7 @@ componentDidMount = () =>{
                       <div key={user.id} className={`item${key === 0 ? ' active' : ''}`}>
                       <div className="col-sm-6 col-md-4" >
                       <div className="thumbnail">
-                      <img className="card-img-top-250" src={user.image} alt="Card image cap"/>
+                      <img className="card-img-top-250" src={user.image} width={150} height={150} alt="Card image cap"/>
                         <h4 className="card-title">{user.name}</h4>
                         <p className="card-text">{user.description}</p>
                      
