@@ -43,11 +43,11 @@ io.on('connection', function(socket){
             })
             //compareArr(tripID,username,queryArray,filterResultsArray,strGoogleQuery);
             //io.emit('chat message',strGoogleQuery);
-             searchFor(tripID, username,strGoogleQuery);
+             searchFor(tripID, "RouteTour",strGoogleQuery);
              //searchFor();
              //console.log(JSON.stringify(response, null, 2));
           }else{
-            searchFor(tripID, username, null)
+            searchFor(tripID, "RouteTour", null)
             // io.emit('suggestion',tripID, username, "Sorry, I could not find any results, please try again!");
             return;
           }
