@@ -40,7 +40,7 @@ import Weather from './Weather';
 
     // YuHqrMnj91vheQrw6VkT5RDNEyLLqPLG new-key
     // gkTGYSO36MElmd25xMW1PRoqjub6S7gf new -key
-    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=kAfXO9dTgfRZBLkFAkxxRHYbezURM1N4&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
+    let flight_url = `https://api.sandbox.amadeus.com/v1.2/flights/low-fare-search?apikey=YuHqrMnj91vheQrw6VkT5RDNEyLLqPLG&origin=${origin}&destination=${destination}&departure_date=${departure_date}&return_date=${return_date}&adults=2&nonstop=true&currency=CAD&number_of_results=1`;
     // console.log("featch- get request URL:", flight_url)
     fetch(flight_url, {
       method: 'GET'
@@ -58,7 +58,7 @@ import Weather from './Weather';
 
   search() {
     let city = this.state.query    
-    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=kAfXO9dTgfRZBLkFAkxxRHYbezURM1N4&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
+    let base_url = `https://api.sandbox.amadeus.com/v1.2/points-of-interest/yapq-search-text?apikey=YuHqrMnj91vheQrw6VkT5RDNEyLLqPLG&city_name=${city}&lang=EN&category=landmark&geonames=true&social_media=false&image_size=small&number_of_images=1&number_of_results=50`
     console.log("featch- get request URL:", base_url)
     fetch(base_url, {
       method: 'GET'
